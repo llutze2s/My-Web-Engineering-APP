@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #A8D7D1;
+                font: Montserrat;
+            }
+
+            .box {
+                background-color: #ffffff;
+                margin: auto;
+                padding: 5px;
+                width: 90%;
+                border-radius: 2%;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 40px;
+                color: #000000
+            }
+
+            table {
+                border: 0px black;
+                margin: auto;
+                width: 90%;
+                color: black;
+            }
+
+            td {
+                border: 0px black;
+                padding: 5px;
+                vertical-align: top;
+            }
+
+            td.left {
+                width: 49%;
+                text-align: right;
+            }
+
+            td.right {
+                width: 49%;
+                text-align: left;
+            }
+
+            td.middle {
+                width: 2%;
+            }
+
+            input.text {
+                height: 25px;
+                width: 60%;
+            }
+
+            input.radio {
+                margin: 5px;
+            }
+
+            input.checkbox {
+                margin: 5px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Survey Form</h1>
+        
+        <div class="box">
+            <!-- center ist nicht mehr aktuell https://developer.mozilla.org/de/docs/Web/HTML/Element/center -->
+            <p style="color: black; text-align:center">Let us know how we can improve freeCodeCamp</p>
+            <table>
+                <tr><td class="left">* Name:</td> <td class="mid"></td> <td><input class="text" type="text"></td></tr>
+                <tr><td class="left">* Email:</td> <td class="mid"></td> <td><input class="text" type="text"></td></tr>
+                <tr><td class="left">* Age:</td> <td class="mid"></td> <td><input class="text" type="number"></td></tr>
+                <tr><td class="left">Which option best describe your current role?</td class="middle"> <td></td>
+                    <td>
+                        <select>
+                            <option selected> Student </option>
+                            <option selected> Employee </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">* How likely is that you would recomend<br/> free CodeCamp to a friend?</td> 
+                    <td class="mid"></td>
+                    <td>
+                        <input type="radio" class="radio" name="recomend" id="definitly"><label for="definitly">Definitly</label><br>
+                        <input type="radio" class="radio" name="recomend" id="maybe"><label for="maybe">Maybe</label><br>
+                        <input type="radio" class="radio" name="recomend" id="notSure"><label for="notSure">Not sure</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">What do you like most in FFC:</td>
+                    <td class="mid"></td>
+                    <td>
+                        <select>
+                            <option selected> Select an option</option>
+                            <option> All </option>
+                            <option> Nothing </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">Things that should be improved in the future<br>(Check all that apply):</td> 
+                    <td class="mid"></td>
+                    <td>
+                        <input type="checkbox" class="checkbox" name="future" id="fend"><label for="fend">Front-end Projects</label><br>
+                        <input type="checkbox" class="checkbox" name="future" id="bend"><label for="bend">Back-end Projects</label><br>
+                        <input type="checkbox" class="checkbox" name="future" id="dvis"><label for="dvis">Data Visualization</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
