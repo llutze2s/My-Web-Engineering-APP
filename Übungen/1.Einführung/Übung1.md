@@ -69,29 +69,35 @@ Geben Sie Ihren HTML- und CSS-Quellcode zusammen in dieses Textfeld ein:
                 text-align: center;
                 margin: 0;
                 font-family: Montserrat;
-                font-size: 24px;
-                padding-top: 22px;
-                padding-bottom: 14px;
+                color:black;
+                font-size: 22px;
+                padding-top: 20px;
+                padding-bottom: 10px;
             }
+
             h2 {
                 text-align: center;
                 margin: 0;
                 font-size: 12px;
                 font-family: Montserrat;
+                color:black;
                 padding-bottom: 10px;
             }
+
             .main{
                 width: 800px;
                 margin: auto;
+                background-color: #eeeeee;
             }
 
             .header {
-                background-color: #eeeeee;
+                background-color: dimgray;
                 height: fit-content;
             }
             .content {
                 width: fit-content;
                 margin: auto;
+                background-color: #eeeeee;
             }
         </style>
 
@@ -103,9 +109,26 @@ Geben Sie Ihren HTML- und CSS-Quellcode zusammen in dieses Textfeld ein:
                 <h2>The man who save a billion lives</h2>
             </div>
             <div class="content">
-                <img src="tribute-img.png" style="width: 700px;">
+                <!-- Probleme mit lokalem Bild ./assets/tribute-img.png -->
+                <center> 
+                    <img src="https://kaul.inf.h-brs.de/wem/assets/img/tribute-img.png" style="width: 70%;">
+                </center>
             </div>
         </div>
     </body>
 </html>
+```
+
+## 1.4. Wireframe with HTML and CSS (Survey Form) (2 Punkte)
+Gegeben ist folgendes HTML-Wireframe (Survey Form):
+![](./Assets/survey.png)
+Hinweis zu den Farben: Firefox DevTools anthalten eine Pipette namens "Eyedropper", mit der man die Farben aus einer Webseite auslesen kann. Die grünliche Farbe im Rahmen des Wireframes ist demnach #b2d6d1,
+
+Hinweis zu den Schriften (Fonts): Die größte Sammlung an "kostenlosen" Web-Schriften stammt von Google und ist unter Google Fonts zu finden. Wer lieber aus dem Vorrat an vorhanden Schriften auswählt, wird unter websichere Schriften fündig.
+
+Mit welchem HTML- und CSS-Code kann man diesen Wireframe möglichst exakt nachbilden?
+Schreiben Sie Ihren CSS-Code direkt in die HTML-Datei. Geben Sie Ihren HTML- und CSS-Quellcode zusammen in dieses Textfeld ein:
+
+```html
+
 ```
