@@ -55,7 +55,7 @@ Die einfachste Möglichkeit wäre es einen Request zu bauen der cacheable ist, z
 
 ## 1.3. Wireframe with HTML and CSS: Tribute Page (2 Punkte)
 Gegeben ist folgendes HTML-Wireframe (Tribute Page):
-![](./Assets/tribute.png)
+![](./Assets/1.Einführung/tribute.png)
 Mit welchem HTML- und CSS-Code kann man diesen Wireframe möglichst exakt nachbilden?
 Schreiben Sie Ihren CSS-Code direkt in die HTML-Datei. Für das Bild dürfen Sie die URL /wem/assets/img/tribute-img.png verwenden.
 Geben Sie Ihren HTML- und CSS-Quellcode zusammen in dieses Textfeld ein:
@@ -121,7 +121,7 @@ Geben Sie Ihren HTML- und CSS-Quellcode zusammen in dieses Textfeld ein:
 
 ## 1.4. Wireframe with HTML and CSS (Survey Form) (2 Punkte)
 Gegeben ist folgendes HTML-Wireframe (Survey Form):
-![](./Assets/survey.png)
+![](./Assets/1.Einführung/survey.png)
 Hinweis zu den Farben: Firefox DevTools anthalten eine Pipette namens "Eyedropper", mit der man die Farben aus einer Webseite auslesen kann. Die grünliche Farbe im Rahmen des Wireframes ist demnach #b2d6d1,
 
 Hinweis zu den Schriften (Fonts): Die größte Sammlung an "kostenlosen" Web-Schriften stammt von Google und ist unter Google Fonts zu finden. Wer lieber aus dem Vorrat an vorhanden Schriften auswählt, wird unter websichere Schriften fündig.
@@ -249,7 +249,7 @@ Schreiben Sie Ihren CSS-Code direkt in die HTML-Datei. Geben Sie Ihren HTML- und
 
 ## 1.5. Wireframe with HTML and CSS (Product Landing Page) (2 Punkte)
 Gegeben ist folgendes HTML-Wireframe (Product Landing Page):
-![](./Assets/landing.png)
+![](./Assets/1.Einführung/landing.png)
 Mit welchem HTML- und CSS-Code kann man diesen Wireframe möglichst exakt nachbilden?
 Für das Bild dürfen Sie die URL /wem/assets/img/landing-img.png verwenden.
 Schreiben Sie Ihren CSS-Code direkt in die HTML-Datei. Geben Sie Ihren HTML- und CSS-Quellcode zusammen in dieses Textfeld ein:
