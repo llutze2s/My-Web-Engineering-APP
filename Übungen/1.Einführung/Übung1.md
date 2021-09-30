@@ -246,3 +246,111 @@ Schreiben Sie Ihren CSS-Code direkt in die HTML-Datei. Geben Sie Ihren HTML- und
     </body>
 </html>
 ```
+
+## 1.5. Wireframe with HTML and CSS (Product Landing Page) (2 Punkte)
+Gegeben ist folgendes HTML-Wireframe (Product Landing Page):
+![](./Assets/landing.png)
+Mit welchem HTML- und CSS-Code kann man diesen Wireframe möglichst exakt nachbilden?
+Für das Bild dürfen Sie die URL /wem/assets/img/landing-img.png verwenden.
+Schreiben Sie Ihren CSS-Code direkt in die HTML-Datei. Geben Sie Ihren HTML- und CSS-Quellcode zusammen in dieses Textfeld ein:
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #EBEAE5;
+                font-weight: bold;
+                width: 800px;
+                color: black;
+                font-weight: 600;
+            }
+
+            h1{
+                text-align: center;
+                font-size: 28px;
+                color: #000000;
+            }
+
+            header{
+                background-color: rgb(54,54,54);
+                height: 45px;
+                line-height: 50px;
+                text-align: center;
+                vertical-align: middle;
+                font-size: 12px;
+            }
+
+            footer{
+                background-color: rgb(1,24,38);
+                height: 130px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            p.header {
+                color: rgb(186,180,173);
+                display: inline;
+                margin: 10px;
+            }
+
+            p.sidetext {
+                text-align: center;
+                font-size: 15px;
+                margin-top: 34px;
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+
+            input.button{
+                border-radius: 5px;
+                height: 30px;
+                background-color: #F88E37;
+                color: white;
+            }
+
+            img {
+                border: 1px solid;
+                border-radius: 7px;
+                width: 100%;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                'left right';
+                gap: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <span>
+                <p class="header">The book series</p>
+                <p class="header">Testimonials</p>
+                <p class="header">The Author</p>
+                <p class="header">Free resources</p>
+            </span>
+        </header>
+        <div id="main"> 
+            <h1> You dont know JavaScript</h1>
+            <div class="grid-container">
+                <div id="div-left">
+                    <img style="margin-left: 20%; margin-right: 20%; width: 60%" src=https://kaul.inf.h-brs.de/wem/assets/img/landing-img.png>
+                </div>
+                <div id="div-right">
+                    <p class="sidetext">Don´t just drift thought javascript.</p>
+                    <p class="sidetext">Understand how javascrupt works</p>
+                    <p class="sidetext">Start your journy thought the bumpy side of javascript</p>
+                    <p class="sidetext"><input type="button"  class ="button" style="width: 70%; padding: 5px;" value="ORDER YOUR COPY NOW"></p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <p style="color: #777A76; padding-top: 40px; font-size: 14px;">The first ebook in the book series is absolutly free.</p>
+            <input type="button" class ="button" style="width: 45%;" value="FIND OUR MORE ABOUT OFFER">
+    </footer>
+</html>
+```
