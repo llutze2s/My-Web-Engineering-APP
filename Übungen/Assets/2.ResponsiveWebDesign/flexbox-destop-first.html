@@ -2,43 +2,40 @@
 <html>
     <head>
         <style>
-            body {
-                width: calc(100vw - 10 px);
-                height: calc(100vh - 10 px);
-            }
-
             .page {
                 display: flex;
                 flex-direction: column;
-                align-items: stretch;
                 text-align: center;
-                gap: 1px;
-                background-color: white;
+                width: 100vw;
             }
 
             .bottom {
-                gap: 1px;
                 display: flex;
                 flex-direction: row;
+                height: 80vh;
             }
 
             .headline {
                 background-color: red;
+                height: 20vh;
             }
 
             .left{
                 background-color: green;
                 flex-grow: 1;
+                flex-shrink: 1;
             }
 
             .content{
                 background-color: blue;
-                flex-grow: 2;
+                flex-grow: 4;
+                flex-shrink: 4;
             }
             
             .right{
                 background-color: violet;
                 flex-grow: 1;
+                flex-shrink: 1;
             }
 
             /* joegalley.com/articles/mobile-first-vs-desktop-first-media-queries */
@@ -46,15 +43,13 @@
                 .page {
                     display: flex;
                     flex-direction: column;
-                    align-items: stretch;
                     text-align: center;
-                    gap: 1px;
-                    background-color: white;
                 }
 
                 .bottom {
                     display: flex;
                     flex-direction: row;
+                    flex-wrap: wrap;
                 }
             }
 
@@ -62,16 +57,12 @@
                 .page {
                     display: flex;
                     flex-direction: column;
-                    align-items: stretch;
                     text-align: center;
-                    gap: 1px;
-                    background-color: white;
                 }
 
                 .bottom {
                     display: flex;
-                    flex-direction: row;
-                    flex-flow: column wrap;
+                    flex-direction: column;
                 }
             }
         </style>
