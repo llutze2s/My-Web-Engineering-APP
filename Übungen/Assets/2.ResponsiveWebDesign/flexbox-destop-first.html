@@ -4,77 +4,58 @@
         <style>
             .page {
                 display: flex;
-                flex-direction: column;
-                text-align: center;
-                width: 100vw;
-            }
-
-            .bottom {
-                display: flex;
-                flex-direction: row;
-                height: 80vh;
+                flex-wrap: wrap;
             }
 
             .headline {
                 background-color: red;
-                height: 20vh;
+                width: 100%;
             }
 
             .left{
                 background-color: green;
                 flex-grow: 1;
                 flex-shrink: 1;
+                width: 20%;
             }
 
             .content{
                 background-color: blue;
                 flex-grow: 4;
                 flex-shrink: 4;
+                width: 60%;
             }
             
             .right{
                 background-color: violet;
                 flex-grow: 1;
                 flex-shrink: 1;
+                width: 20%;
             }
 
             /* joegalley.com/articles/mobile-first-vs-desktop-first-media-queries */
             @media (max-width: 992px) {	
-                .page {
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
+                .content{
+                    width: 80%;
                 }
-
-                .bottom {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
+                .right{
+                    width: 100%;
                 }
             }
 
             @media (max-width: 768px) {
-                .page {
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                }
-
-                .bottom {
-                    display: flex;
-                    flex-direction: column;
-                }
+               .left, .right, .content{
+                   width: 100%;
+               }
             }
         </style>
     </head>
     <body>
         <div class="page">
             <div class="headline"><h1>Headline</h1></div>
-            <div class="bottom">
-                <div class="left">Left</div>
-                <div class="content">Content</div>
-                <div class="right">Right</div>
-            </div>
+            <div class="left"><h2>Left</h2></div>
+            <div class="content"><h2>Content</h2></div>
+            <div class="right"><h2>Right</h2></div>
         </div>
     </body>
 </html>
