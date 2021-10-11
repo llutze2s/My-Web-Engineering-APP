@@ -2,96 +2,120 @@
 <html>
     <head>
         <style>
-            body {
-                width: 100%;
-                height: 100%;
-                background-color: #EBEAE5;
-                font-weight: bold;
-                color: black;
-                font-weight: 600;
+            .grid {
+                height: 100vh;
+                width: 100vw;
+                display: grid;
+                grid-template-rows: 1fr 1fr 4fr 1fr;
+                grid-template-columns: 1fr 1fr;
             }
-
-            h1{
+            .header{
+                grid-row: 1;
+                grid-column: span 2;
+                text-align: center;
+                background-color: #363636;
+                color: white;
+                padding: 10px;
+                line-height: 40px;
+            }
+            .title{
+                grid-row: 2;
+                grid-column: span 2;
+                background-color: #EBEAE5;
                 text-align: center;
                 font-size: 28px;
-                color: solid black;
+                color: black;
             }
-
-            header{
-                background-color: #363636;
-                height: 50px;
-                line-height: 50px;
+            .left {
+                grid-row: 3;
+                grid-column: 1;
+                background-color: #EBEAE5;
+            }
+            .right {
+                grid-row: 3;
+                grid-column: 2;
+                background-color: #EBEAE5;
+                color: black;
                 text-align: center;
-                vertical-align: middle;
-                font-size: 12px;
-            }
-
-            footer{
-                background-color: #061825;
-                height: 130px;
-                text-align: center;
-                vertical-align: middle;
-            }
-
-            .header {
-                color: #A7AEAE;
-                display: inline;
-                margin: 10px;
-            }
-
-            .sidetext {
-                text-align: center;
+                padding-top: 5%;
+                font-weight: bold;
                 font-size: 15px;
-                margin-top: 34px;
-                margin-left: 5%;
-                margin-right: 5%;
+            }
+            .footer {
+                grid-row: 4;
+                grid-column: span 2;
+                background-color: #061825;
+                text-align: center;
+                color: #747171; 
+                font-size: 14px;
+                padding: 10px;
             }
 
-            input.button{
-                border-radius: 5px;
-                height: 30px;
-                background-color: #F88E37;
-                color: white;
+            @media (max-width: 768px) {
+                .grid {
+                    height: 100vh;
+                    width: 100vw;
+                    display: grid;
+                    grid-template-rows: 1fr 1fr 2fr 2fr 1fr;
+                    grid-template-columns: 1fr;
+                }
+                .left {
+                    grid-row: 3;
+                    grid-column: 1;
+                }
+                .right {
+                    grid-row: 4;
+                    grid-column: 1;
+                }
+                .footer {
+                    grid-row: 5;
+                    grid-column: 1;
+                }
             }
 
-            img {
-                border: 1px solid;
-                border-radius: 7px;
-                width: 100%;
+            p{
+                margin: 25px;
             }
 
-            .grid-container {
-                display: grid;
-                grid-template-areas:
-                'left right';
-                gap: 10px;
+            .flex{
+                padding: 5px;
+                display: flex;
+                justify-content: center; 
+                align-items: center;
+            }
+
+            img{
+                border: 1px solid black;
+                border-radius: 10px;
             }
         </style>
     </head>
     <body>
-        <header>
-            <div class="header">The book series</div>
-            <div class="header">Testimonials</div>
-            <div class="header">The Author</div>
-            <div class="header">Free resources</div>
-        </header>
-        <div id="main"> 
-            <h1> You dont know JavaScript</h1>
-            <div class="grid-container">
-                <div id="div-left">
-                    <img style="margin-left: 20%; margin-right: 20%; width: 60%" src=https://kaul.inf.h-brs.de/wem/assets/img/landing-img.png>
-                </div>
-                <div id="div-right">
-                    <div class="sidetext">Don´t just drift thought javascript.</div>
-                    <div class="sidetext">Understand how javascrupt works</div>
-                    <div class="sidetext">Start your journy thought the bumpy side of javascript</div>
-                    <div class="sidetext"><input type="button"  class ="button" style="width: 70%; padding: 5px;" value="ORDER YOUR COPY NOW"></div>
+        <div class="grid">
+            <div class="header">
+                    The book series
+                    Testimonials
+                    The Author
+                    Free resources
+            </div>
+            <div class="title">
+                <b>You dont know JavaScript</b>
+            </div>
+            <div class="left">
+                <div class="flex">
+                    <img style="width: 200px;" src=https://kaul.inf.h-brs.de/wem/assets/img/landing-img.png>
                 </div>
             </div>
+            <div class="right">
+                <p>Don´t just drift thought javascript.</p>
+                <p>Understand how javascrupt works</p>
+                <p>Start your journy thought the bumpy side of javascript</p>
+                <p><button style="background: #F88E37; border-radius: 5px; width: 80%; color: white;">ORDER YOUR COPY NOW</button></p>
+            </div>
+            <div class="footer">
+                The first ebook in the book series is absolutly free.
+                <button style="background: #F88E37; border-radius: 5px; width: 60%; color: white;">FIND OUR MORE ABOUT OFFER</button>
+            </div>
         </div>
-        <footer>
-            <p style="color: #747171; padding-top: 40px; font-size: 14px;">The first ebook in the book series is absolutly free.</p>
-                <input type="button" class ="button" style="width: 45%;" value="FIND OUR MORE ABOUT OFFER">
-        </footer>
     </body>
 </html>
