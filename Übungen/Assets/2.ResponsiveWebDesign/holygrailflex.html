@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                width: 100%;
+                height: 100%;
+                overflow-x: scroll;
+            }
+
+            .page {
+                display: flex;
+                flex-wrap: wrap;
+                text-align: center;
+            }
+
+            .headline {
+                background-color: #C04F4F;
+                width: 100%;
+            }
+
+            .menuband {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .left{
+                background-color: #C28281;
+                width: 20%;
+            }
+
+            .content{
+                background-color: #6A9EBD;
+                width: 60%;
+            }
+            
+            .right{
+                background-color: #C28281;
+                width: 20%;
+            }
+
+            .footer{
+                background-color: #000000;
+                width: 100%;
+            }
+
+            button{
+                background-color: #6A709F;
+                color: black;
+                font-weight: bold;
+                border-radius: 20px;
+                box-shadow: 15px;
+                margin: 5px;
+            }
+
+            /* joegalley.com/articles/mobile-first-vs-desktop-first-media-queries */
+            @media (max-width: 992px) {	
+                .content{
+                    width: 80%;
+                }
+                .right{
+                    width: 100%;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .content, .left, .right{
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <div class="headline">
+                <h1>Header</h1>
+                <div class="menuband">
+                    <button>Home</button>
+                    <button>News</button>
+                    <button>Contact</button>
+                    <button>About</button>
+                </div>
+            </div>
+            <div class="left">
+                left</br>
+                menu</br>
+                with</br>
+                many</br>
+                items</br>
+            </div>
+            <div class="content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            <div class="right">right</div>
+            <div class="footer">
+                    <h2>Footer: </h2> <u>Sidemap</u> <u>Home</u> <u>News</u> <u>Contact</u> <u>About</u>
+            </div>  
+        </div>
+    </body>
+</html>
