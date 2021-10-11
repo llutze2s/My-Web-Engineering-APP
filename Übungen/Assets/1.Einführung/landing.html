@@ -3,9 +3,10 @@
     <head>
         <style>
             body {
+                width: 100%;
+                height: 100%;
                 background-color: #EBEAE5;
                 font-weight: bold;
-                width: 800px;
                 color: black;
                 font-weight: 600;
             }
@@ -13,12 +14,12 @@
             h1{
                 text-align: center;
                 font-size: 28px;
-                color: #000000;
+                color: solid black;
             }
 
             header{
-                background-color: rgb(54,54,54);
-                height: 45px;
+                background-color: #363636;
+                height: 50px;
                 line-height: 50px;
                 text-align: center;
                 vertical-align: middle;
@@ -26,19 +27,19 @@
             }
 
             footer{
-                background-color: rgb(1,24,38);
+                background-color: #061825;
                 height: 130px;
                 text-align: center;
                 vertical-align: middle;
             }
 
-            p.header {
-                color: rgb(186,180,173);
+            .header {
+                color: #A7AEAE;
                 display: inline;
                 margin: 10px;
             }
 
-            p.sidetext {
+            .sidetext {
                 text-align: center;
                 font-size: 15px;
                 margin-top: 34px;
@@ -69,12 +70,10 @@
     </head>
     <body>
         <header>
-            <span>
-                <p class="header">The book series</p>
-                <p class="header">Testimonials</p>
-                <p class="header">The Author</p>
-                <p class="header">Free resources</p>
-            </span>
+            <div class="header">The book series</div>
+            <div class="header">Testimonials</div>
+            <div class="header">The Author</div>
+            <div class="header">Free resources</div>
         </header>
         <div id="main"> 
             <h1> You dont know JavaScript</h1>
@@ -83,16 +82,16 @@
                     <img style="margin-left: 20%; margin-right: 20%; width: 60%" src=https://kaul.inf.h-brs.de/wem/assets/img/landing-img.png>
                 </div>
                 <div id="div-right">
-                    <p class="sidetext">Don´t just drift thought javascript.</p>
-                    <p class="sidetext">Understand how javascrupt works</p>
-                    <p class="sidetext">Start your journy thought the bumpy side of javascript</p>
-                    <p class="sidetext"><input type="button"  class ="button" style="width: 70%; padding: 5px;" value="ORDER YOUR COPY NOW"></p>
+                    <div class="sidetext">Don´t just drift thought javascript.</div>
+                    <div class="sidetext">Understand how javascrupt works</div>
+                    <div class="sidetext">Start your journy thought the bumpy side of javascript</div>
+                    <div class="sidetext"><input type="button"  class ="button" style="width: 70%; padding: 5px;" value="ORDER YOUR COPY NOW"></div>
                 </div>
             </div>
         </div>
+        <footer>
+            <p style="color: #747171; padding-top: 40px; font-size: 14px;">The first ebook in the book series is absolutly free.</p>
+                <input type="button" class ="button" style="width: 45%;" value="FIND OUR MORE ABOUT OFFER">
+        </footer>
     </body>
-    <footer>
-        <p style="color: #777A76; padding-top: 40px; font-size: 14px;">The first ebook in the book series is absolutly free.</p>
-            <input type="button" class ="button" style="width: 45%;" value="FIND OUR MORE ABOUT OFFER">
-    </footer>
 </html>
