@@ -237,3 +237,130 @@ Make a function that makes a publish/subscribe object. It will reliably deliver 
 `my_pubsub = pubsub();`
 `my_pubsub.subscribe(alert);`
 `my_pubsub.publish("It works!"); // alert("It works!")`
+
+```js
+
+```
+
+Make a factory that makes functions that generate unique symbols.
+`gensym = gensymf('G');`
+`gensym() // 'G0'`
+`gensym() // 'G1'`
+`gensym() // 'G2'`
+`gensym() // 'G3'`
+
+```js
+
+```
+
+Make a function that returns a function that will return the next fibonacci number.
+var fib = fibonaccif(0, 1);
+`fib() // 0`
+`fib() // 1`
+`fib() // 1`
+`fib() // 2`
+`fib() // 3`
+`fib() // 5`
+
+```js
+
+```
+
+Write a function that adds from many invocations, until it sees an empty invocation.
+`addg(3)(4)(5)() // 12`
+`addg(1)(2)(4)(8)() // 15`
+
+```js
+
+```
+
+Write a function that will take a binary function and apply it to many invocations.
+`applyg(add)(3)(4)(5)() // 12`
+`applyg(add)(1)(2)(4)(8)() // 15`
+
+```js
+
+```
+
+Write a function `m` that takes a value and an optional source string and returns them in an object.
+`JSON.stringify(m(1)) // {"value": 1, "source": "1"}`
+`JSON.stringify(m(Math.PI, "pi")) // {"value": 3.14159..., "source": "pi"}`
+
+```js
+
+```
+
+Write a function `addm` that takes two m objects and returns an m object.
+`JSON.stringify(addm(m(3), m(4))) // {"value": 7, "source": "(3+4)"}`
+
+```js
+
+```
+
+Write a function `binarymf` that takes a binary function and a string and returns a function that acts on m objects.
+`addm = binarymf(add, "+");`
+`JSON.stringify(addm(m(3), m(4))) // {"value": 7, "source": "(3+4)"}`
+
+```js
+
+```
+
+Modify function binarymf so that the functions it produces can accept arguments that are either numbers or m objects.
+`addm = binarymf(add, "+");`
+`JSON.stringify(addm(3, 4)) // {"value": 7, "source": "(3+4)"}`
+
+```js
+
+```
+
+Write function `unarymf`, which is like binarymf except that it acts on unary functions.
+`squarem = unarymf(square, "square");`
+`JSON.stringify(squarem(4)) // {"value": 16, "source": "(square 4)"}`
+
+```js
+
+```
+
+Write a function that takes the lengths of two sides of a triangle and computes the length of the hypotenuse. `(Hint: c2 = a2 + b2)`
+`hyp(3, 4) // 5`
+
+```js
+
+```
+
+Write a function that evaluates array expressions.
+`hypa = [ Math.sqrt, [ add, [mul, 3, 3], [mul, 4, 4] ] ];`
+`exp(hypa) // 5`
+
+```js
+
+```
+
+Make a function that stores a value in a variable.
+`var variable; store(5); // variable === 5`
+
+```js
+
+```
+
+Make a function that takes a binary function, two functions that provide operands, and a function that takes the result.
+`quatre( add, identityf(3), identityf(4), store ); // variable === 7`
+
+```js
+
+```
+
+Make a function that takes a unary function, and returns a function that takes an argument and a callback.
+`sqrtc = unaryc(Math.sqrt); sqrt(81, store) // variable === 9`
+
+```js
+
+```
+
+Make a function that takes a binary function, and returns a function that takes two arguments and a callback.
+`addc = binaryc(add); addc(4, 5, store) // variable === 9`
+`mulc = binaryc(mul); mulc(2, 3, store) // variable === 6`
+
+```js
+
+```
