@@ -239,7 +239,31 @@ Make a function that makes a publish/subscribe object. It will reliably deliver 
 `my_pubsub.publish("It works!"); // alert("It works!")`
 
 ```js
+var text;
 
+function pubsub() {
+    subs = [];
+    return {
+        publish: function (str) {
+            for(i=0;i<subs.length;i++) {    //subs.forEach(element => {
+                subs[i](str);               //    element(str);
+            }                               //});
+        },
+        subscribe: function (sub) {
+            subs.push(sub);
+        }
+    }
+}
+
+function message(msg) {
+    text = msg;
+}
+
+my_pubsub = pubsub();
+my_pubsub.subscribe(message); //Geändert von alert zu message
+my_pubsub.publish("It works!"); // alert("It works!")
+
+document.getElementById("ausgabe2.1").innerHTML = "Aufgabe 3.2.1: "+text;
 ```
 
 Make a factory that makes functions that generate unique symbols.
@@ -250,7 +274,17 @@ Make a factory that makes functions that generate unique symbols.
 `gensym() // 'G3'`
 
 ```js
+function gensymf(symb){
+    var count = 0;
+    return function () {
+        count++;
+        return symb+count; 
+    }
+}
 
+gensym = gensymf('G');
+
+document.getElementById("ausgabe2.2").innerHTML = "Aufgabe 3.2.2: "+gensym()+", "+gensym()+", "+gensym()+", "+gensym();
 ```
 
 Make a function that returns a function that will return the next fibonacci number.
@@ -263,7 +297,20 @@ var fib = fibonaccif(0, 1);
 `fib() // 5`
 
 ```js
+var fib = fibonaccif(0, 1);
 
+function fibonaccif(x,y){
+    v1 = x;
+    v2 = y;
+    return function() {
+        tmp=v1;
+        v1=v2;
+        v2=v2+tmp;
+        return tmp;
+    }
+}
+
+document.getElementById("ausgabe2.3").innerHTML = "Aufgabe 3.2.3: "+fib()+", "+fib()+", "+fib()+", "+fib()+", "+fib()+", "+fib();
 ```
 
 Write a function that adds from many invocations, until it sees an empty invocation.
@@ -271,7 +318,18 @@ Write a function that adds from many invocations, until it sees an empty invocat
 `addg(1)(2)(4)(8)() // 15`
 
 ```js
+function addg(x) {
+    var sum = x;
+    return function(y) {
+        if(typeof y === "undefined"){
+            return sum;
+        } else {
+            return addg(x+y);
+        }
+    }
+}
 
+document.getElementById("ausgabe2.4").innerHTML = "Aufgabe 3.2.4: " +addg(3)(4)(5)()+", "+addg(1)(2)(4)(8)();
 ```
 
 Write a function that will take a binary function and apply it to many invocations.

@@ -158,7 +158,7 @@ function revocable(fun) {
     }
 }
 
-document.getElementById("ausgabe1.13").innerHTML = "Aufgabe 3.1.13: "+ temp.invoke(7) + ", " + temp.revoke() + ", " + temp.invoke(8);
+document.getElementById("ausgabe1.13").innerHTML = "Aufgabe 3.1.13: "+ temp.invoke(7,3) + ", " + temp.revoke() + ", " + temp.invoke(8,2);
 
 //Aufgabe 3.1.14
 var my_vector = vector();
