@@ -148,18 +148,13 @@ function mul(x,y){
 hypa = [ Math.sqrt, [ add, [mul, 3, 3], [mul, 4, 4] ] ];
 
 function exp(array){
-    if(typeof array[1][1]==="number"){
-        x = array[1][1];
-    } else {
-        x = array[1][1][0](array[1][1][1],array[1][1][2]);
+    if(typeof array === "number"){return array;}
+    else if(array.length === 2){
+        return array[0](exp(array[1]));
     }
-    if(typeof array[1][2]==="number"){
-        y = array[1][2];
-    } else {
-        y = array[1][2][0](array[1][2][1],array[1][2][2]);
+    else if(array.length === 3){
+        return array[0](exp(array[1]),exp(array[2])); //[ add, [mul, 3, 3], [mul, 4, 4] ]
     }
-
-    return array[0](array[1][0](typeof x == "number"?x:x.value,typeof y == "number"?y:y.value));   
 }
 
 document.getElementById("ausgabe2.12").innerHTML = "Aufgabe 3.2.12: "+exp(hypa);
