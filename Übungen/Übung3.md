@@ -337,7 +337,23 @@ Write a function that will take a binary function and apply it to many invocatio
 `applyg(add)(1)(2)(4)(8)() // 15`
 
 ```js
+function add(x,y) {
+    return x+y;
+}
+function applyg(fun) {
+    return function calc (x) {
+        var sum = x;
+        return function(y) {
+            if(typeof y === "undefined"){
+                return sum;
+            } else {
+                return calc(fun(sum,y));
+            }
+        }
+    }
+}
 
+document.getElementById("ausgabe2.5").innerHTML = "Aufgabe 3.2.5: "+ applyg(add)(3)(4)(5)()+", "+applyg(add)(1)(2)(4)(8)();
 ```
 
 Write a function `m` that takes a value and an optional source string and returns them in an object.
@@ -345,14 +361,26 @@ Write a function `m` that takes a value and an optional source string and return
 `JSON.stringify(m(Math.PI, "pi")) // {"value": 3.14159..., "source": "pi"}`
 
 ```js
+function m(value,source){
+    return {'value':value,'source':(typeof source==="undefined"?value:source)};
+}
 
+document.getElementById("ausgabe2.6").innerHTML = "Aufgabe 3.2.6: "+JSON.stringify(m(1))+", "+JSON.stringify(m(Math.PI, "pi"));
 ```
 
 Write a function `addm` that takes two m objects and returns an m object.
 `JSON.stringify(addm(m(3), m(4))) // {"value": 7, "source": "(3+4)"}`
 
 ```js
+function m(value,source){
+    return {'value':value,'source':(typeof source==="undefined"?value:source)};
+}
 
+function addm(m1,m2){
+    return {'value':m1.value+m2.value,'source':"("+m1.value+"+"+m2.value+")"};
+}
+
+document.getElementById("ausgabe2.7").innerHTML = "Aufgabe 3.2.7: "+JSON.stringify(addm(m(3), m(4)));
 ```
 
 Write a function `binarymf` that takes a binary function and a string and returns a function that acts on m objects.
@@ -360,7 +388,15 @@ Write a function `binarymf` that takes a binary function and a string and return
 `JSON.stringify(addm(m(3), m(4))) // {"value": 7, "source": "(3+4)"}`
 
 ```js
+addm2 = binarymf(add, "+");
 
+function binarymf(fun,operator){
+    return function(x,y){
+        return {'value':fun(x,y),'source':"("+x+operator+y+")"};
+    }
+}
+
+document.getElementById("ausgabe2.8").innerHTML = "Aufgabe 3.2.8: "+JSON.stringify(addm2(3, 4));
 ```
 
 Modify function binarymf so that the functions it produces can accept arguments that are either numbers or m objects.
@@ -368,7 +404,21 @@ Modify function binarymf so that the functions it produces can accept arguments 
 `JSON.stringify(addm(3, 4)) // {"value": 7, "source": "(3+4)"}`
 
 ```js
+addm3 = binarymf3(add, "+");
 
+function binarymf3(fun,operator){
+    return function(x,y){
+        if(typeof x === "number"){
+            x = m(x);
+        }
+        if(typeof y === "number"){
+            y = m(y);
+        }
+        return {'value':fun(x.value,y.value),'source':"("+x.value+operator+y.value+")"};
+    }
+}
+
+document.getElementById("ausgabe2.9").innerHTML = "Aufgabe 3.2.9: "+JSON.stringify(addm3(m(3), 4));
 ```
 
 Write function `unarymf`, which is like binarymf except that it acts on unary functions.
@@ -376,7 +426,19 @@ Write function `unarymf`, which is like binarymf except that it acts on unary fu
 `JSON.stringify(squarem(4)) // {"value": 16, "source": "(square 4)"}`
 
 ```js
+squarem = unarymf(square, "square");
 
+function square(x){
+    return x*x;
+}
+
+function unarymf(fun,operator){
+    return function(x){
+        return {'value':fun(x),'source':"("+operator+" "+x+")"};
+    }
+}
+
+document.getElementById("ausgabe2.10").innerHTML = "Aufgabe 3.2.10: "+JSON.stringify(squarem(4));
 ```
 
 Write a function that takes the lengths of two sides of a triangle and computes the length of the hypotenuse. `(Hint: c2 = a2 + b2)`
