@@ -107,7 +107,7 @@ document.getElementById("ausgabe2.8").innerHTML = "Aufgabe 3.2.8: "+JSON.stringi
 
 addm3 = binarymf3(add, "+");
 
-function binarymf3(fun,operator){
+function binarymf3(fun,operator="+"){
     return function(x,y){
         if(typeof x === "number"){
             x = m(x);
@@ -120,7 +120,6 @@ function binarymf3(fun,operator){
 }
 
 document.getElementById("ausgabe2.9").innerHTML = "Aufgabe 3.2.9: "+JSON.stringify(addm3(m(3), 4));
-
 
 squarem = unarymf(square, "square");
 
@@ -135,3 +134,82 @@ function unarymf(fun,operator){
 }
 
 document.getElementById("ausgabe2.10").innerHTML = "Aufgabe 3.2.10: "+JSON.stringify(squarem(4));
+
+function hyp(a,b){
+    return Math.sqrt(square(a)+square(b));
+}
+
+document.getElementById("ausgabe2.11").innerHTML = "Aufgabe 3.2.11: "+hyp(3, 4);
+
+function mul(x,y){
+    return x*y;
+}
+
+hypa = [ Math.sqrt, [ add, [mul, 3, 3], [mul, 4, 4] ] ];
+
+function exp(array){
+    if(typeof array[1][1]==="number"){
+        x = array[1][1];
+    } else {
+        x = array[1][1][0](array[1][1][1],array[1][1][2]);
+    }
+    if(typeof array[1][2]==="number"){
+        y = array[1][2];
+    } else {
+        y = array[1][2][0](array[1][2][1],array[1][2][2]);
+    }
+
+    return array[0](array[1][0](typeof x == "number"?x:x.value,typeof y == "number"?y:y.value));   
+}
+
+document.getElementById("ausgabe2.12").innerHTML = "Aufgabe 3.2.12: "+exp(hypa);
+
+var variable;
+
+function store(x){
+   variable = x;
+}
+
+store(5);
+
+document.getElementById("ausgabe2.13").innerHTML = "Aufgabe 3.2.13: "+(variable === 5);
+
+function identityf(param) {
+    return function() {
+        return param;
+    }
+}
+
+function quatre(operator,x,y,task){
+    task(operator(x(),y()));
+}
+
+quatre( add, identityf(3), identityf(4), store)
+
+document.getElementById("ausgabe2.14").innerHTML = "Aufgabe 3.2.14: "+variable;
+
+sqrtc = unaryc(Math.sqrt);
+sqrtc(81, store);
+
+function unaryc(operator){
+    return function(x,task){
+        task(operator(x));
+    }
+}
+
+document.getElementById("ausgabe2.15").innerHTML = "Aufgabe 3.2.15: "+variable;
+
+var tmp = 0;
+addc = binaryc(add); addc(4, 5, store)
+tmp = variable;
+mulc = binaryc(mul); mulc(2, 3, store)
+
+function binaryc(operator){
+    return function(x,y,task){
+        task(operator(x,y));
+    }
+}
+
+document.getElementById("ausgabe2.16").innerHTML = "Aufgabe 3.2.16: "+tmp+", "+variable;
+
+

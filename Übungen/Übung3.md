@@ -445,7 +445,11 @@ Write a function that takes the lengths of two sides of a triangle and computes 
 `hyp(3, 4) // 5`
 
 ```js
+function hyp(a,b){
+    return Math.sqrt(square(a)+square(b));
+}
 
+document.getElementById("ausgabe2.11").innerHTML = "Aufgabe 3.2.11: "+hyp(3, 4);
 ```
 
 Write a function that evaluates array expressions.
@@ -453,28 +457,78 @@ Write a function that evaluates array expressions.
 `exp(hypa) // 5`
 
 ```js
+function mul(x,y){
+    return x*y;
+}
 
+hypa = [ Math.sqrt, [ add, [mul, 3, 3], [mul, 4, 4] ] ];
+
+function exp(array){
+    if(typeof array[1][1]==="number"){
+        x = array[1][1];
+    } else {
+        x = array[1][1][0](array[1][1][1],array[1][1][2]);
+    }
+    if(typeof array[1][2]==="number"){
+        y = array[1][2];
+    } else {
+        y = array[1][2][0](array[1][2][1],array[1][2][2]);
+    }
+
+    return array[0](array[1][0](typeof x == "number"?x:x.value,typeof y == "number"?y:y.value));   
+}
+
+document.getElementById("ausgabe2.12").innerHTML = "Aufgabe 3.2.12: "+exp(hypa);
 ```
 
 Make a function that stores a value in a variable.
 `var variable; store(5); // variable === 5`
 
 ```js
+var variable;
 
+function store(x){
+   variable = x;
+}
+
+store(5);
+
+document.getElementById("ausgabe2.13").innerHTML = "Aufgabe 3.2.13: "+(variable === 5);
 ```
 
 Make a function that takes a binary function, two functions that provide operands, and a function that takes the result.
 `quatre( add, identityf(3), identityf(4), store ); // variable === 7`
 
 ```js
+function identityf(param) {
+    return function() {
+        return param;
+    }
+}
 
+function quatre(operator,x,y,task){
+    task(operator(x(),y()));
+}
+
+quatre( add, identityf(3), identityf(4), store)
+
+document.getElementById("ausgabe2.14").innerHTML = "Aufgabe 3.2.14: "+variable;
 ```
 
 Make a function that takes a unary function, and returns a function that takes an argument and a callback.
 `sqrtc = unaryc(Math.sqrt); sqrt(81, store) // variable === 9`
 
 ```js
+sqrtc = unaryc(Math.sqrt);
+sqrtc(81, store);
 
+function unaryc(operator){
+    return function(x,task){
+        task(operator(x));
+    }
+}
+
+document.getElementById("ausgabe2.15").innerHTML = "Aufgabe 3.2.15: "+variable;
 ```
 
 Make a function that takes a binary function, and returns a function that takes two arguments and a callback.
@@ -482,5 +536,16 @@ Make a function that takes a binary function, and returns a function that takes 
 `mulc = binaryc(mul); mulc(2, 3, store) // variable === 6`
 
 ```js
+var tmp = 0;
+addc = binaryc(add); addc(4, 5, store)
+tmp = variable;
+mulc = binaryc(mul); mulc(2, 3, store)
 
+function binaryc(operator){
+    return function(x,y,task){
+        task(operator(x,y));
+    }
+}
+
+document.getElementById("ausgabe2.16").innerHTML = "Aufgabe 3.2.16: "+tmp+", "+variable;
 ```

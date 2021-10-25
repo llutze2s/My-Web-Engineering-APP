@@ -435,13 +435,112 @@
     </pre>
     <p id="ausgabe2.10"></p>
 
-    
     <h2>Aufgabe 3.2.11</h2>
     <pre class="prettyprint">
          <!-- language: lang-js -->
+        function hyp(a,b){
+            return Math.sqrt(square(a)+square(b));
+        }
+        
+        document.getElementById("ausgabe2.11").innerHTML = "Aufgabe 3.2.11: "+hyp(3, 4);
     </pre>
     <p id="ausgabe2.11"></p>
 
+    <h2>Aufgabe 3.2.12</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         function mul(x,y){
+            return x*y;
+        }
+        
+        hypa = [ Math.sqrt, [ add, [mul, 3, 3], [mul, 4, 4] ] ];
+        
+        function exp(array){
+            if(typeof array[1][1]==="number"){
+                x = array[1][1];
+            } else {
+                x = array[1][1][0](array[1][1][1],array[1][1][2]);
+            }
+            if(typeof array[1][2]==="number"){
+                y = array[1][2];
+            } else {
+                y = array[1][2][0](array[1][2][1],array[1][2][2]);
+            }
+        
+            return array[0](array[1][0](typeof x == "number"?x:x.value,typeof y == "number"?y:y.value));   
+        }
+        
+        document.getElementById("ausgabe2.12").innerHTML = "Aufgabe 3.2.12: "+exp(hypa);
+    </pre>
+    <p id="ausgabe2.12"></p>
+
+    <h2>Aufgabe 3.2.13</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        var variable;
+
+        function store(x){
+           variable = x;
+        }
+         
+        store(5);
+        
+        document.getElementById("ausgabe2.13").innerHTML = "Aufgabe 3.2.13: "+(variable === 5);
+    </pre>
+    <p id="ausgabe2.13"></p>
+
+    <h2>Aufgabe 3.2.14</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        function identityf(param) {
+            return function() {
+                return param;
+            }
+        }
+        
+        function quatre(operator,x,y,task){
+            task(operator(x(),y()));
+        }
+        
+        quatre( add, identityf(3), identityf(4), store)
+        
+        document.getElementById("ausgabe2.14").innerHTML = "Aufgabe 3.2.14: "+variable;
+    </pre>
+    <p id="ausgabe2.14"></p>
+
+    <h2>Aufgabe 3.2.15</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        sqrtc = unaryc(Math.sqrt);
+        sqrtc(81, store);
+         
+        function unaryc(operator){
+            return function(x,task){
+                task(operator(x));
+            }
+        }
+         
+        document.getElementById("ausgabe2.15").innerHTML = "Aufgabe 3.2.15: "+variable; 
+    </pre>
+    <p id="ausgabe2.15"></p>
+
+    <h2>Aufgabe 3.2.16</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        var tmp = 0;
+        addc = binaryc(add); addc(4, 5, store)
+        tmp = variable;
+        mulc = binaryc(mul); mulc(2, 3, store)
+         
+        function binaryc(operator){
+            return function(x,y,task){
+                task(operator(x,y));
+            }
+        }
+         
+        document.getElementById("ausgabe2.16").innerHTML = "Aufgabe 3.2.16: "+tmp+", "+variable;
+    </pre>
+    <p id="ausgabe2.16"></p>
 
     <script src="nr2.js"></script>
 </body>
