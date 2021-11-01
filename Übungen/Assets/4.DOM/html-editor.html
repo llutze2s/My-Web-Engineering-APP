@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <title>HTML-Edior</title>
+    <script src="html-editor.js"></script>
+    <style>
+        td, th {
+            border: 1px solid rgb(88, 86, 86);
+        }
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <h1>HTML Editor</h1>
+    <table>
+        <thead>
+          <tr>
+            <th colspan="2">Commands</th>
+            <th colspan="3">Überschrift</th>
+            <th colspan="4">Text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><a href="#" data-command='undo'>Zurück</a></th>
+            <th><a href="#" data-command='createlink'>Link erstellen</a></th>
+            <th><a href="#" data-command='h1'><h1>H1</h1></a></th>
+            <th><a href="#" data-command='h2'><h2>H2</h2></a></th>
+            <th><a href="#" data-command='h3'><h3>H3</h3></a></th>
+            <th><a href="#" data-command='justifyLeft'>Text links</a></th>
+            <th><a href="#" data-command='justifyCenter'>Text center</a></th>
+            <th><a href="#" data-command='justifyRight'>Text rechts</a></th>
+            <th><a href="#" data-command='superscript'>Text fett</a></th>
+          </tr>
+          <tr>
+            <td colspan="9" style="height: 300px; background-color: lightblue; padding: 5px;" contenteditable></td>
+          </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+//document.execCommand(CommandName, ShowDefaultUI, ValueArgument); //Eigentlich veraltet
