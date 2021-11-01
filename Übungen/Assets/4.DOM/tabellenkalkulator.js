@@ -32,6 +32,8 @@ function addcolumn(){
             x = table.rows[i].insertCell(table.rows[i].cells.length);
             x.contentEditable = true;
             x.id = Column_Index[table.rows[i].cells.length-2]+i;
+            x.addEventListener("focusout", calc);
+            x.addEventListener("focusin", sum);
             //x.innerHTML = x.id;
         }
         if(i == 0 && table.rows[i].cells.length > 3){
@@ -80,12 +82,22 @@ function removerow(){       //https://www.w3schools.com/jsref/met_table_deletero
     }
 }
 
-function calc(){
-    //regex
-        //
-        //berech
+function calc(cell){
+    if(cell.path[0].childNodes[0].data.startsWith("=")){
+        if(cell.path[0].childNodes[0].data.match(/^=SUM\([A-Z][1-9]+\,[A-Z][1-9]+\)/)){
+            var data = cell.path[0].childNodes[0].data;
+            cell.path[0].setAttribute("formel", data.toString()); //Formel abspeichern
+            tmp = data.split(/[\(,\)]/);
+            console.log(tmp);
+            x = tmp[1];
+            y = tmp[2];
+            cell.path[0].childNodes[0].data = parseInt(document.getElementById(x).innerHTML) + parseInt(document.getElementById(y).innerHTML);
+        }
+    }
 };
 
-function sum(){
-
+function sum(cell){
+    if(cell.path[0].getAttribute("formel") != undefined){
+        cell.path[0].childNodes[0].data = cell.path[0].getAttribute("formel");
+    }
 };
