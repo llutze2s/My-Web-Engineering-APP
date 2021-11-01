@@ -32,7 +32,7 @@ function AddRedner(){
     var stop = document.createElement('button');
     stop.innerHTML = "Stopp!";
 
-    newRedner = new Redner(li.innerHTML,timer,stop);
+    var newRedner = new Redner(li.innerHTML,timer,stop);
     RednerListe.push(newRedner);
 
     stop.addEventListener('click', function(){newRedner.toogle();});
