@@ -335,9 +335,98 @@ Arbeiten Sie das Tutorial Create a WYSIWYG Editor With the contentEditable Attri
 
 
 ```html
-
+<!DOCTYPE html>
+<head>
+    <title>HTML-Edior</title>
+    <script src="html-editor.js"></script>
+    <style>
+      td, th {
+        border: 1px solid rgb(88, 86, 86);
+        padding: 5px;
+      }
+      th {
+        text-align: center;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      a{
+        background-color:lightslategray;
+        border-radius: 5px;
+        padding: 5px;
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">HTML Editor</h1>
+    <table style="margin: 0 auto">
+        <thead>
+          <tr>
+            <th colspan="4">Commands</th>
+            <th colspan="3">Überschrift</th>
+            <th colspan="5">Text</th>
+            <th colspan="2">Mathe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr> <!--https://www.w3schools.com/charsets/ref_utf_arrows.asp Unicode Symbole-->
+            <th><a href="#" onclick="command('undo');return false;">&#8634;</a></th>
+            <th><a href="#" onclick="command('redo');return false;">&#8635;</a></th>
+            <th><a href="#" onclick="command('createlink');return false;">Link</a></th>
+            <th><a href="#" onclick="command('insertImage');return false;">Bild</a></th>
+            <th><a href="#" onclick="command('h1');return false;">H1</a></th>
+            <th><a href="#" onclick="command('h2');return false;">H2</a></th>
+            <th><a href="#" onclick="command('h3');return false;">H3</a></th>
+            <th><a href="#" onclick="command('justifyLeft');return false;">&lArr;</a></th>
+            <th><a href="#" onclick="command('justifyCenter');return false;">&dArr;</a></th>
+            <th><a href="#" onclick="command('justifyRight');return false;">&rArr;</a></th>
+            <th><a href="#" onclick="command('bold');return false;"><b>Fett</b></a></th>
+            <th><a href="#" onclick="command('italic');return false;"><i>Kursiv</i></a></th>
+            <th><a href="#" onclick="command('superscript');return false;">x<sup>y</sup></a></th>
+            <th><a href="#" onclick="command('subscript');return false;">x<sub>y</sub></a></th>
+          </tr>
+          <tr>
+            <td colspan="15" style="height: 300px; background-color: lightblue; padding: 5px;" contenteditable></td>
+          </tr>
+        </tbody>
+    </table>
+</body>
+</html>
 ```
 
 ```js
+//document.execCommand(CommandName, ShowDefaultUI, ValueArgument); //Eigentlich veraltet aber keine Alternative
 
+function command (com){
+    switch (com) {
+        case 'h1':
+        case 'h2':
+        case 'h3':
+            document.execCommand('formatBlock', false, com);
+            break;
+        case 'justifyLeft':
+        case 'justifyRight': 
+        case 'justifyCenter':
+        case 'superscript':
+        case 'subscript':
+        case 'bold':
+        case 'italic':
+            document.execCommand(com, false, false);
+            break;
+        case 'createlink':
+            url = prompt('Enter URL: ', 'https:\/\/');
+            document.execCommand(com, false, url);
+            break;
+        case 'insertImage':
+            url = prompt('Enter URL: ', 'https:\/\/');
+            url.height='100px';
+            url.width='50px';
+            document.execCommand(com, false, url);
+            break;
+        default:
+            alert('Befehl nicht gefunden!');
+    }
+}
 ```
