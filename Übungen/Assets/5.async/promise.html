@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <head>
+        <title>Promises</title>
+
+        <script>
+            // https://developer.mozilla.org/en-US/docs/Web/API/Response/text
+            var TextA = " ";
+            var TextB = " ";
+
+            function init(){
+                Promise.all([       //Probleme in die Var schreiben
+                    fetch( "https://llutze2s.github.io/My-Web-Engineering-APP/%C3%9Cbungen/Assets/5.async/textA.txt" ).then(response =>
+                        response.text().then(function(text) {
+                            TextA = text;
+                    })),
+                    fetch( "https://llutze2s.github.io/My-Web-Engineering-APP/%C3%9Cbungen/Assets/5.async/textB.txt" ).then(response =>
+                        response.text().then(function(text) {
+                            TextB = text;
+                    }))
+                ]).then(()=>writetext());
+            }
+
+            function writetext(){
+                textA = TextA.split("\n");  //Bei Zeilenumbruch trennen
+                textB = TextB.split("\n");
+                para = document.getElementById("Text");
+
+                counter = 0;
+
+                textA.forEach(element => {
+                    var tmp = document.createElement("p");
+                    tmp.innerHTML = element + textB[counter];
+                    para.appendChild(tmp);
+                    counter += 1;
+                });
+                if(textB.length > textA.length){
+                    for(i = textA.length+1; i < textB.length; i++){
+                        var tmp = document.createElement("p");
+                        tmp.innerHTML = textB[counter];
+                        para.appendChild(tmp);
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="init()">
+
+        <h1>Promises</h1>
+        
+        <p>Erstellen Sie auf Ihrem Server www2.inf.h-brs.de (oder localhost) zwei Text-Dateien A.txt und B.txt mit ungefähr gleich vielen Zeilen. Laden Sie mit der fetch-API parallel beide Text-Dateien vom Server.<br> 
+            Geben Sie auf einer Webseite den Inhalt beider Dateien zeilenweise aus, wobei der Anfang der Zeile aus A.txt und das Ende aus B.txt stammen soll. Die beiden Dateien sollen also zeilenweise konkateniert werden.<br> 
+            Sie max. Geschwindigkeit durch maximale Parallelität. Achten Sie gleichzeitig auf Korrektheit. Verwenden Sie dabei ausschließlich die Promise API ohne async / await.</p>
+
+        <h2>Text:</h2>
+        <p id="Text">
+
+        </p>
+    </body>
+</html>
