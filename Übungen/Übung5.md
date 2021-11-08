@@ -133,6 +133,87 @@ Lösen Sie die letzte Aufgabe mit async / await statt Promise.
 Schreiben Sie eine Webseite, die Primzahlen berechnet und fortlaufend neu berechnete Primzahlen hinzufügt. Verwenden Sie dabei die BigNum-Arithmetik. Auf der Webseite soll außerdem ein Ladebalken ständig hin- und herlaufen, damit man feststellen kann, ob die Anzeige ruckelfrei abläuft. Stellen Sie fest, ab welcher Zahl der Ladebalken anfängt zu ruckeln.
 
 Schreiben Sie dann einen Web Worker, der Primzahlen berechnet und diese mittels postMessage an die EventLoop in der Webseite sendet, damit diese dort angezeigt werden können.
+
+```js
+var i = 0;
+var prim = 9000000; //2
+
+// https://www.w3schools.com/howto/howto_js_progressbar.asp
+function init(){
+    var item = document.getElementById("Bar");
+    var width = 1;
+    var countup = true;
+    setInterval(frame, 16); //60Hz
+    function frame() {
+        nextprimZahlen()
+        if (width >= 100){
+            countup = false;
+        } else if (width <=0) {
+            countup = true;
+        }
+
+        if(countup == true){
+            width++;
+            item.style.width = width + "%";
+        } else {
+            width--;
+            item.style.width = width + "%";
+        }
+    }
+}
+
+
+function nextprimZahlen(){
+    var display = document.getElementById("liste");
+
+    for(var x = prim+1; x < 10000000 ; x++){ //Alle Zahlen durchgehen für Prim check
+        if(primtext(x)){
+            display.innerHTML +=", "+x;
+            prim = x;
+            console.log(prim);
+            break;
+        }
+    }
+}
+
+function primtext(x){
+    for(let y=2; y < x; y++){ //Alle Zahlen bis dahin prüfen
+        if (x%y === 0) {
+           return false;
+        }
+    }
+    return true;
+}
 ```
 
+```html
+<!DOCTYPE html>
+<head>
+    <title>Primzahlen</title>
+    <script src="prim.js"></script>
+    <style>
+        #Progress {
+            width: 80%;
+            height: 30px;
+            padding: 5px;
+            background-color: lightblue;
+            margin: auto;
+        }
+
+        #Bar {
+            width: 1%;
+            height: 30px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <h1>Primzahlen: </h1>
+    <div id="Progress">
+        <div id="Bar"></div>
+    </div>
+    <p id="liste">
+    </p>
+</body>
+</html>
 ```
