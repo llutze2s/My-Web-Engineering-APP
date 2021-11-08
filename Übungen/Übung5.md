@@ -217,3 +217,91 @@ function primtext(x){
 </body>
 </html>
 ```
+
+Mit Worker:
+
+```html
+<!DOCTYPE html>
+<head>
+    <title>Primzahlen</title>
+    <script>
+        function init(){
+            //https://www.html5rocks.com/de/tutorials/workers/basics/
+            const worker = new Worker('primwebworker.js');
+
+            worker.addEventListener('message', function(e) {
+                document.getElementById("liste").innerHTML +=", "+e.data;
+            });
+
+            worker.postMessage("");   //Webworker starten
+            
+            // Progess Bar
+            var i = 0;
+            var item = document.getElementById("Bar");
+            var width = 1;
+            var countup = true;
+            setInterval(frame, 16); //60Hz
+            function frame() {
+                if (width >= 100){
+                    countup = false;
+                } else if (width <=0) {
+                    countup = true;
+                }
+
+                if(countup == true){
+                    width++;
+                    item.style.width = width + "%";
+                } else {
+                    width--;
+                    item.style.width = width + "%";
+                }
+            }
+        }
+    </script>
+    <style>
+        #Progress {
+            width: 80%;
+            height: 30px;
+            padding: 5px;
+            background-color: lightblue;
+            margin: auto;
+        }
+
+        #Bar {
+            width: 1%;
+            height: 30px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <h1>Primzahlen: </h1>
+    <div id="Progress">
+        <div id="Bar"></div>
+    </div>
+    <p id="liste">
+    </p>
+</body>
+</html>
+```
+
+```js
+var prim = 9000000; //Letze gefunden Prim / erste Prim
+
+self.addEventListener('message',function(e) {
+    for(var x = prim+1; x < 10000000 ; x++){ //Alle Zahlen durchgehen für Prim check
+        if(primtext(x)){
+            self.postMessage(x);
+        }
+    }
+});
+
+function primtext(x){
+    for(let y=2; y < x; y++){ //Alle Zahlen bis dahin prüfen
+        if (x%y === 0) {
+           return false;
+        }
+    }
+    return true;
+}
+```
