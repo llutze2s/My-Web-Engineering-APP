@@ -305,3 +305,16 @@ function primtext(x){
     return true;
 }
 ```
+
+## 5.4. WWW-Navigator (3 Punkte)
+Schreiben Sie einen Navigator für die Fachbegriffe des WWW zu den Oberthemen HTML, CSS und JavaScript. Im Hauptmenü sollen diese 3 Oberthemen zur Auswahl stehen. Im Untermenü soll eine zugehörige Liste von Fachbegriffen zum jeweiligen ausgewählten Oberthema stehen. In der Mitte soll eine Dokumentation zum ausgewählten Fachbegriff erscheinen mit Hyperlinks zu den anderen Fachbegriffen. Wird auf einen solchen Hyperlink geklickt, so sollen sich auch die beiden Menüs anpassen. Mit dem Back-Button des Browsers soll ein Zurücksprung möglich sein.
+
+<img src="./Assets/5.async/www.navigator.png" width="400" height="300">
+
+```html
+
+```
+
+```js
+
+```
