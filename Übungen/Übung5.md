@@ -312,9 +312,213 @@ Schreiben Sie einen Navigator für die Fachbegriffe des WWW zu den Oberthemen HT
 <img src="./Assets/5.async/www.navigator.png" width="400" height="300">
 
 ```html
+<!DOCTYPE html>
+<head>
+    <title>WWW Navi</title>
+    <script src="navigator.js"></script>
+    <style>
+        .page {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 3fr 1fr 1fr;
+            background-color: white;
+            grid-gap: 1px;
+            justify-content: stretch; 
+        }
 
+        .menuband {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .headline {
+            grid-row: 1;
+            grid-column: span 3;
+            text-align: center;
+            background-color: #C04F4F;
+            color: white;
+        }
+
+        .left{
+            grid-row: 2;
+            grid-column: span 2;
+            text-align: center;
+            background-color: #C28281;
+        }
+
+        .content{
+            grid-row: 3;
+            grid-column: span 2;
+            text-align: center;
+            background-color: #6A9EBD;
+        }
+        
+        .right{
+            grid-row: 4;
+            grid-column: span 2;
+            text-align: center;
+            background-color: #C28281;
+        }
+
+        .footer{
+            grid-row: 5;
+            grid-column: span 2;
+            background-color: #000000;
+            text-align: center;
+            color: white;
+        }
+
+        button{
+            background-color: #6A709F;
+            color: black;
+            font-weight: bold;
+            border-radius: 20px;
+            box-shadow: 15px;
+            margin: 5px;
+        }
+
+        /* joegalley.com/articles/mobile-first-vs-desktop-first-media-queries */
+        @media (min-width: 992px) {	
+            .page {
+                display: grid;
+                grid-template-rows: 1fr 2fr 1fr 1fr;
+                grid-template-columns: 1fr 2fr;
+                background-color: white;
+                grid-gap: 1px;
+                justify-content: stretch;
+            }
+
+            .left{
+                grid-row: 2;
+                grid-column: 1;
+            }
+
+            .content{
+                grid-row: 2;
+                grid-column: 2;
+            }
+            
+            .right{
+                grid-row: 3;
+                grid-column: span 3;
+            }
+
+            .footer{
+                grid-row: 4;
+                grid-column: span 3;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .page {
+                display: grid;
+                grid-template-rows: 1fr 3fr 1fr;
+                grid-template-columns: 1fr 2fr 1fr;
+                background-color: white;
+                grid-gap: 1px;
+                justify-content: stretch;
+            }
+
+            .left{
+                grid-row: 2;
+                grid-column: 1;
+            }
+
+            .content{
+                grid-row: 2;
+                grid-column: 2;
+            }
+            
+            .right{
+                grid-row: 2;
+                grid-column: 3;
+            }
+
+            .footer{
+                grid-row: 3;
+                grid-column: span 3;
+            }
+        }
+    </style>
+</head>
+<body onload="init()">
+    <div class="page">
+        <div class="headline">
+            <h1>WWW-Navigator</h1>
+            <div class="menuband" id="menuband">
+
+            </div>
+        </div>
+        <div class="left" id="sidebar"></div>
+        <div class="content" id="content"></div>
+        <div class="right" id="additional"></div>
+        <div class="footer">
+            <b>Footer: </b> <u>Sidemap</u> <u>Home</u> <u>News</u> <u>Contact</u> <u>About</u>
+        </div>
+    </div>
+</body>
+</html>
 ```
 
 ```js
+var menuband = "";
+var sidebar = "";
+var additional = "";
+var content = "";
+var json = "";
 
+async function init(){
+    menuband = document.getElementById("menuband");
+    sidebar = document.getElementById("sidebar");
+    additional = document.getElementById("additional");
+    content = document.getElementById("content");
+
+    json = JSON.parse(await fetch("navigator_contents.json").then(response => response.text()));
+    build();
+}
+
+function build(){
+    for(let i=0;i<Object.keys(json).length;i++){
+        let tmp = document.createElement("button");
+        tmp.innerText = Object.keys(json)[i];
+        tmp.addEventListener('click', function(){
+            onpresssidebar(tmp);
+            tmp.style.background = "grey";
+            content.innerText = "";
+            additional.innerHTML = "";
+        });
+        menuband.appendChild(tmp);
+    }
+}
+
+function onpresssidebar( button ){
+    sidebar.innerText = "";
+    for(let i=0;i<Object.keys(json[button.innerText]).length; i++){
+        let tmp = document.createElement("button");
+        tmp.innerText = Object.keys(json[button.innerText])[i];
+        tmp.addEventListener('click', function(){
+            onpresscontent(button,tmp);
+            setcolor();
+            button.style.background = "grey";
+        });
+        sidebar.appendChild(tmp);
+    }
+}
+
+function onpresscontent( topic , subtopic ){
+    content.innerText = json[topic.innerText][subtopic.innerText].content;
+    setcolor();
+    topic.style.background = "grey";
+    subtopic.style.background = "grey";
+    for(let i=0; i < json[topic.innerText][subtopic.innerText].references.length; i++){
+        additional.innerHTML='<a href='+json[topic.innerText][subtopic.innerText].references[i]+'>'+json[topic.innerText][subtopic.innerText].references[i]+'</a><br>'
+    }
+}
+
+function setcolor(){
+    let buttons = document.getElementsByTagName('button');
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].style.background = "#6A709F";
+    }
+}
 ```
