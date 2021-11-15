@@ -199,5 +199,114 @@ Eine durchgehende Linie wird nur erzeugt, solange man die Maus gedrückt hält.
 Je langsamer man den Cursor bewegt, desto dicker wird die Linie (so als ob das Papier an der Stelle die Tinte schneller aufsaugt).
 
 ```html
+<!DOCTYPE html>
+<head>
+    <title> Kalligraphie-Editor in SVG</title>
+    <style>
+        svg{
+            width: 40%; 
+            display: block;
+            margin: auto;
+            border: 1px solid gray;
+        }
+        .center{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .toolbar{
+            width: 20%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+        }
+        .box {
+            height: 20px;
+            width: 20px;
+            margin: 5px;
+            border: 1px solid black;
+        }
+        .black {
+            background-color: black;
+        }
 
+        .gray {
+            background-color: gray;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="center">
+        <h1 style="text-align: center;">Kalligraphie-Editor in SVG</h1>
+        <div class="toolbar">
+            <div class="box" style="background-color: black;" id="black"></div>
+            <div class="box" style="background-color: gray;" id="gray"></div>
+            <div class="box" style="background-color: blue;" id="blue"></div>
+            <div class="box" style="background-color: red;" id="red"></div>
+            <div class="box" style="background-color: green;" id="green"></div>
+            <div class="box" id="clear">cls</div>
+        </div>
+        <svg viewbox="0 0 100 100"></svg>
+    </div>
+
+    <script>
+        var diag = d3.select('svg');
+
+        var color = "gray";
+        document.getElementById("black").addEventListener("click", _ => color = "black");
+        document.getElementById("gray").addEventListener("click", _ => color = "gray");
+        document.getElementById("blue").addEventListener("click", _ => color = "blue");
+        document.getElementById("red").addEventListener("click", _ => color = "red");
+        document.getElementById("green").addEventListener("click", _ => color = "green");
+        document.getElementById("clear").addEventListener("click", _ => diag.selectAll("*").remove());
+
+        var last_x = 0;
+        var last_y = 0;
+        var time = 0;
+
+        function convert(x,y){
+            const svg = document.querySelector('svg');
+            let point = svg.createSVGPoint();
+            point.x = x;
+            point.y = y;
+
+            return point.matrixTransform(svg.getScreenCTM().inverse());
+        }
+
+        diag.call(d3.drag()
+            .on("start", function (d) {
+                point = convert(d.x,d.y);
+
+                last_x = point.x;
+                last_y = point.y;
+                //time = d.sourceEvent.timeStamp;
+            })
+            .on("drag", function (d) {
+                point = convert(d.x,d.y);
+                //console.log((d.sourceEvent.timeStamp-time)/10+"px");  //Sieht schlecht aus, wahrscheinlich eher d3.polygonHull(points)
+
+                diag.append("path")
+                    .attr("draggable", "true")
+                    .attr("fill","none") //keine Fläche
+                    .attr("stroke", color) //Strichfarbe
+                    .attr("stroke-width","0.3px")
+                    .raise()
+                    .attr("d", "M"+last_x+","+last_y+" L"+point.x+","+point.y);
+
+                last_x = point.x;
+                last_y = point.y; 
+                //time = d.sourceEvent.timeStamp;
+            })
+            .on("end", function (d) {
+                last_x = 0;
+                last_y = 0;
+            })
+        );
+    </script>
+</body>
+</html>
 ```
