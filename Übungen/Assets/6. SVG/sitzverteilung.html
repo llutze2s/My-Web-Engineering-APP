@@ -69,10 +69,10 @@
                 diag.append("rect")
                     .attr("x", 25)
                     .attr("y", Math.ceil((100/Object.keys(data).length)*(i)+10))
+                    .attr("height", Math.ceil((100/Object.keys(data).length)-10))
                     .transition()
                     .duration(800)  //Dauer Animation
                     .attr("width", Math.ceil((data[i].sitze/data.at(-1).gesamt)*100))
-                    .attr("height", Math.ceil((100/Object.keys(data).length)-10))
                     .attr("fill",  data[i].farbe);
                 diag.append("text")
                     .attr("x", 1)
