@@ -65,7 +65,6 @@
                             .attr("x", d.x+2)
                             .attr("y", d.y+2)
                             .text("x:"+Math.ceil(points[i].x)+" y:"+Math.ceil(points[i].y));
-                        console.log(points);
                         d3.select("#path")
                             .attr("d", "M"+points[0].x+","+points[0].y+" L"+points[2].x+","+points[2].y+" L"+points[1].x+","+points[1].y+" S"+points[2].x+","+points[2].y+" "+points[0].x+","+points[0].y);
                     })
