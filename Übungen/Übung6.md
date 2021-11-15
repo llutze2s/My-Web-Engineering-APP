@@ -26,41 +26,39 @@ Implementieren Sie ein Balkendiagramm mit Inline SVG. Geben Sie die Daten für d
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-    <div class="centerd">
-        <h1 style="text-align: center;">Sitzverteilung 18. Bundestag</h1>
+    <h1 style="text-align: center;">Sitzverteilung 18. Bundestag</h1>
 
-        <table>
-            <tr>
-                <th>Fraktion</th>
-                <th>Anzahl</th>
-            </tr>
-            <tr>
-                <td>CDU/CSU</td>
-                <td>310</td>
-            </tr>
-            <tr>
-                <td>SPD</td>
-                <td>193</td>
-            </tr>
-            <tr>
-                <td>Die Linke</td>
-                <td>64</td>
-            </tr>
-            <tr>
-                <td>Grüne</td>
-                <td>63</td>
-            </tr>
-            <tr>
-                <td>Gesamt</td>
-                <td>630</td>
-            </tr>
-        </table>
-        <p>
-            Quelle <a href="http://webarchiv.bundestag.de/cgi/show.php?id=1284&jahr=2016">Webarchiv Bundestag</a>
-        </p>
+    <table>
+        <tr>
+            <th>Fraktion</th>
+            <th>Anzahl</th>
+        </tr>
+        <tr>
+            <td>CDU/CSU</td>
+            <td>310</td>
+        </tr>
+        <tr>
+            <td>SPD</td>
+            <td>193</td>
+        </tr>
+        <tr>
+            <td>Die Linke</td>
+            <td>64</td>
+        </tr>
+        <tr>
+            <td>Grüne</td>
+            <td>63</td>
+        </tr>
+        <tr>
+            <td>Gesamt</td>
+            <td>630</td>
+        </tr>
+    </table>
+    <p>
+        Quelle <a href="http://webarchiv.bundestag.de/cgi/show.php?id=1284&jahr=2016">Webarchiv Bundestag</a>
+    </p>
 
-        <svg viewbox="0 0 130 100"></svg>
-    </div>
+    <svg viewbox="0 0 130 100"></svg>
 
     <script>
         var diag = d3.select('svg')
@@ -103,7 +101,7 @@ Implementieren Sie ein Balkendiagramm mit Inline SVG. Geben Sie die Daten für d
 ```
 
 ## 6.2. SVG Bezier-Animation (3 Punkte)
-Schreiben Sie mit SVG ein Animationswerkzeug für Bezierkurven, wie unter §1 - A lightning introduction vorgegeben.
+Schreiben Sie mit SVG ein Animationswerkzeug für Bezierkurven, wie unter [§1 - A lightning introduction](https://pomax.github.io/bezierinfo/#introduction) vorgegeben.
 
 ```html
 
