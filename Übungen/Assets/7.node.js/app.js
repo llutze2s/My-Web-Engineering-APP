@@ -38,13 +38,12 @@ app.post ('/post', function (req, res) {
     text+=file1[i]+file2[i]+"\n"; 
   }
 
-  fs.writeFile("merge.txt", text, function(err) {
+  fs.writeFile('merge.txt', text, function(err) {
       if(err) {
           return console.log(err);
       }
-      console.log('Geschrieben');
-      res.download(`${__dirname}/merge.txt`);
+      res.download('merge.txt');
   });
 });
 
-var server = app.listen(3000,function() {});
+app.listen(3000,function() {});
