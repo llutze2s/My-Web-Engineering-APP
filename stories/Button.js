@@ -1,21 +1,13 @@
 import { html } from 'lit-html';
-import { styleMap } from 'lit-html/directives/style-map.js';
 import './button.css';
 
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ primary, backgroundColor = null, size, label, onClick }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-
+export const Button = ({ label }) => {
   return html`
-    <button
-      type="button"
-      class=${['storybook-button', `storybook-button--${size || 'medium'}`, mode].join(' ')}
-      style=${styleMap({ backgroundColor })}
-      @click=${onClick}
-    >
-      ${label}
-    </button>
+        <title>Einkaufsliste</title>
+        <script type="module" src="modul_einkaufsliste.js"></script>
+        <einkaufs-liste></einkaufs-liste>
   `;
 };
