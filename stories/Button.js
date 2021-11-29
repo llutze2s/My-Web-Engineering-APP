@@ -7,7 +7,7 @@ import './button.css';
 export const Button = ({ label }) => {
   return html`
         <title>Einkaufsliste</title>
-        <script type="module" src="modul_einkaufsliste.js"></script>
+        <script type="module" src="../Übungen/Assets/8.Modular/modul_einkaufsliste.js"></script>
         <einkaufs-liste></einkaufs-liste>
   `;
 };
