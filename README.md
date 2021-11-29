@@ -6,4 +6,4 @@ this is an WebApp for my Subject "Web Engineering" at the Hochschule Bonn-Rhein-
 
 Webseite:  https://llutze2s.github.io/My-Web-Engineering-APP/
 
-Storybook: https://61a393ea09f3dc003ad67531-bdkbtviqvc.chromatic.com/
+Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/
