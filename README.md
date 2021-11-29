@@ -2,7 +2,15 @@
 Hey there,
 this is an WebApp for my Subject "Web Engineering" at the Hochschule Bonn-Rhein-Sieg.
 
-[Zu den Übungslösungen](Übungen/Inhaltsverzeichnis.md)
+# Inhaltsverzeichnis für die Übungen
+## [1. Einführung](./Übungen/Übung1.md)
+## [2. Responsive Web Design](./Übungen/Übung2.md)
+## [3. JavaScript](./Übungen/Übung3.md)
+## [4. DOM](./Übungen/Übung4.md)
+## [5. Async & Promises](./Übungen/Übung5.md)
+## [6. SVG](./Übungen/Übung6.md)
+## [7. Node.js](./Übungen/Übung7.md)
+## [8. Modular](./Übungen/Übung8.md)
 
 Webseite:  https://llutze2s.github.io/My-Web-Engineering-APP/
 
