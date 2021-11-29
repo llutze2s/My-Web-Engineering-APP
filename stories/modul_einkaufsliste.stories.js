@@ -1,13 +1,11 @@
 import { Einkauf } from './modul_einkaufsliste';
+import { html } from 'lit-html';
 
 export default {
     title: 'Übungen/Einkaufsliste',
-    argTypes: {
-    },
+    component: Einkauf,
 };
   
-const Template = (args) => Einkauf(args);
+const Template = args => <Einkauf {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {};
-  
+export const Default = Template.bind({});
