@@ -1,4 +1,5 @@
 # Übung 7
+
 ## 7.1. File Generatoren (4 Punkte) 
 Schreiben Sie in Node.js zwei Kommandozeilen-Tools, um große Dateien zu erzeugen. 1. node number_file_gen.js 20_000 soll eine Datei mit 20.000 Zeilen erzeugen. In jeder Zeile soll die Zeilennummer und ein Punkt stehen. 20.000 ist dabei ein Parameter des Tools. Jede andere Zahl soll ebenfalls erlaubt sein. 2. node alpha_file_gen.js 123456 soll eine Datei mit 123456 Zeilen erzeugen. In jeder Zeile soll eine Kombination von Großbuchstaben (ohne Umlaute) in folgender Reihenfolge stehen: A B C ... Z AA AB AC AD ... usw. Implementieren Sie Ihre Kommandozeilen-Tools in modernem ECMAScript 2020. 
 
