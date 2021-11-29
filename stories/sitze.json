@@ -1,0 +1,28 @@
+{
+    "data":
+    [
+        {
+            "fraktion":"CSU/CDU",
+            "sitze":310,
+            "farbe":"black"
+        },
+        {
+            "fraktion":"SPD",
+            "sitze":193,
+            "farbe":"red"
+        },
+        {
+            "fraktion":"Die Linke",
+            "sitze":64,
+            "farbe":"red"
+        },
+        {
+            "fraktion":"Grüne",
+            "sitze":63,
+            "farbe":"green"
+        },
+        {
+            "gesamt":360
+        }
+    ]
+}
