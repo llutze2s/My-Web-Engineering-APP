@@ -3,7 +3,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 3fr;
     background-color: white;
-    grid-gap: 1px;
+    /*grid-gap: 1px;*/
     justify-content: stretch; 
 }
 
@@ -11,24 +11,24 @@
     grid-row: 1;
     grid-column: span 3;
     text-align: center;
-    background-color: red;
+    background-color: #4158D0;  /* https://cssgradient.io/gradient-backgrounds/ */
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
 
 .menu{
     grid-row: 2;
     grid-column: span 2;
     text-align: center;
-    background-color: green;
+    background-color: lightgray;
 }
 
 .content{
     grid-row: 3;
     grid-column: span 2;
     text-align: center;
-    background-color: blue;
+    background-color: lightblue;
 }
 
-/* joegalley.com/articles/mobile-first-vs-desktop-first-media-queries */
 @media (min-width: 992px) {	
     .page {
         display: grid;
