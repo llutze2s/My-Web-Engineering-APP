@@ -66,7 +66,7 @@ export class SVGDiagram extends LitElement {
   }
 
   printDiag() {
-    fetch("sitze.json")
+    fetch("https://github.com/llutze2s/My-Web-Engineering-APP/blob/0c7c7c5c99131671ca015b0cd3c4847760b65962/stories/assets/sitze.json")
     .then(response => response.json())
     .then(json => createDiagram(json.data, this.shadowRoot));
 
