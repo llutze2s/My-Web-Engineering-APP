@@ -649,7 +649,73 @@ Schreiben Sie mit LitElement eine flexible Menü-Komponente, die sich sowohl fü
 
 Geben Sie hier den vollständigen Quellcode Ihrer Menü-Komponente ein:
 ```js
+import {LitElement, html, css} from 'https://mkaul.github.io/lit/lib/lit.js';
 
+export class Menüband extends LitElement {
+  static styles = css`
+  ul {
+    padding: 5px;
+    margin: 5px;
+    list-style-type: none;
+  }
+  button {
+    background-color: #6A709F;
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+    box-shadow: 15px;
+    margin: 5px;
+    text-decoration: none;
+  }
+  .vertical {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .vertical button {
+    display: block;
+    padding: 5px;
+  }
+  .horizontal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .horizontal button {
+    padding: 5px;
+  }
+  `;
+
+  static properties = {
+    //name: {type: String},
+    vertical: {type: Boolean},
+    items: {type: Array},
+    callback: {type: Object}
+  };
+
+  static Menuitems;
+
+  constructor() {
+    super();
+    this.Menuitems = [];
+  }
+
+  render() {
+    var tmp = [];
+    for(let i=0;i<this.items.length; i++ ) {
+        tmp.push(html`<button type="button" id="${this.items[i]}" @click=${(e) => this._press(e)}>${this.items[i]}</button>`);
+    }
+    this.Menuitems = tmp;
+    return html`${this.vertical?html`<div class="vertical"><ul>${this.Menuitems}</ul></div>`
+                               :html`<div class="horizontal"><ul>${this.Menuitems}</ul></div>`}`;
+  }
+
+  _press(e) {
+    onpresssidebar(e.path[0].id);
+  }
+
+}
+customElements.define('menü-band', Menüband);
 ```
 
 ## 8.3. LitElement WWW-Navigator (4 Punkte)
@@ -657,5 +723,177 @@ Zerlegen Sie Ihren WWW-Navigator (aus Ü5.4) in wiederverwendbare Web-Komponente
 
 Geben Sie hier den vollständigen Quellcode Ihres WWW-Navigators ein:
 ```js
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>HTML Nav</title>
+        <script>
+            var menuband = "";
+            var sidebar = "";
+            var additional = "";
+            var content = "";
+            var json = "";
+            var topic = "";
 
+            async function init(){
+                menuband = document.getElementById("menuband");
+                sidebar = document.getElementById("sidebar");
+                additional = document.getElementById("additional");
+                content = document.getElementById("content");
+
+                json = JSON.parse(await fetch("navigator_contents.json").then(response => response.text()));
+                let items = []; 
+                for(let i=0;i<Object.keys(json).length;i++){
+                    items.push('"'+Object.keys(json)[i]+'"');
+                }
+                let menü = document.createElement("menü-band");
+                menü.setAttribute("items", '['+items.toString()+']');
+                menuband.appendChild(menü);
+            }
+
+            function onpresssidebar( id ){
+                if(Object.keys(json).includes(id)){
+                    sidebar.innerText = "";
+                    let items = []; 
+                    for(let i=0;i<Object.keys(json[id]).length; i++){
+                        items.push('"'+Object.keys(json[id])[i]+'"');
+                    }
+                    let menü = document.createElement("menü-band");
+                    menü.setAttribute("items", '['+items.toString()+']');
+                    menü.setAttribute("vertical", true);
+                    sidebar.appendChild(menü);
+                    topic = id;
+                    content.innerText = "";
+                    additional.innerHTML = "";
+                } else {
+                    content.innerText = json[topic][id].content;
+                    for(let i=0; i < json[topic][id].references.length; i++){
+                        additional.innerHTML='<a href='+json[topic][id].references[i]+'>'+json[topic][id].references[i]+'</a><br>'
+                    }
+                }
+            }
+        </script>
+        <script type="module" src="modul_menü_nav.js"></script>
+        <style>
+            .page {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr 3fr 1fr 1fr;
+                background-color: white;
+                grid-gap: 1px;
+                justify-content: stretch; 
+            }
+            .headline {
+                grid-row: 1;
+                grid-column: span 3;
+                text-align: center;
+                background-color: #C04F4F;
+                color: white;
+            }
+            .left{
+                grid-row: 2;
+                grid-column: span 2;
+                text-align: center;
+                background-color: #C28281;
+            }
+
+            .content{
+                grid-row: 3;
+                grid-column: span 2;
+                text-align: center;
+                background-color: #6A9EBD;
+            }
+            
+            .right{
+                grid-row: 4;
+                grid-column: span 2;
+                text-align: center;
+                background-color: #C28281;
+            }
+
+            .footer{
+                grid-row: 5;
+                grid-column: span 2;
+                background-color: #000000;
+                text-align: center;
+                color: white;
+            }
+
+        @media (min-width: 992px) {	
+                .page {
+                    display: grid;
+                    grid-template-rows: 1fr 2fr 1fr 1fr;
+                    grid-template-columns: 1fr 2fr;
+                    background-color: white;
+                    grid-gap: 1px;
+                    justify-content: stretch;
+                }
+
+                .left{
+                    grid-row: 2;
+                    grid-column: 1;
+                }
+
+                .content{
+                    grid-row: 2;
+                    grid-column: 2;
+                }
+                
+                .right{
+                    grid-row: 3;
+                    grid-column: span 3;
+                }
+
+                .footer{
+                    grid-row: 4;
+                    grid-column: span 3;
+                }
+            }
+            @media (min-width: 1200px) {
+                .page {
+                    display: grid;
+                    grid-template-rows: 1fr 3fr 1fr;
+                    grid-template-columns: 1fr 2fr 1fr;
+                    background-color: white;
+                    grid-gap: 1px;
+                    justify-content: stretch;
+                }
+
+                .left{
+                    grid-row: 2;
+                    grid-column: 1;
+                }
+
+                .content{
+                    grid-row: 2;
+                    grid-column: 2;
+                }
+                
+                .right{
+                    grid-row: 2;
+                    grid-column: 3;
+                }
+
+                .footer{
+                    grid-row: 3;
+                    grid-column: span 3;
+                }
+            }
+        </style>
+    </head>
+    <body onload="init()">
+        <div class="page">
+            <div class="headline">
+                <h1>WWW-Navigator</h1>
+                <div id="menuband"></div>
+            </div>
+            <div class="left" id="sidebar"></div>
+            <div class="content" id="content"></div>
+            <div class="right" id="additional"></div>
+            <div class="footer">
+                <b>Footer: </b> <u>Sidemap</u> <u>Home</u> <u>News</u> <u>Contact</u> <u>About</u>
+            </div>
+        </div>
+    </body>
+</html>
 ```
