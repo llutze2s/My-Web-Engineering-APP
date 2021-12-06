@@ -19,21 +19,6 @@ async function init(){
     let menu = document.createElement("menu-band");
     menu.setAttribute("items", '['+items.toString()+']');
     menuband.appendChild(menu);
-
-    //https://developers.google.com/web/tools/workbox/guides/get-started
-    //https://www.chromium.org/blink/serviceworker/service-worker-faq für SSL
-    if ('serviceWorker' in navigator) {
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', async () => {
-                try {
-                    const reg = await navigator.serviceWorker.register("serviceworker.js");
-                    console.log('Service worker registered!');
-                } catch (err) {
-                    console.log('Service worker registration failed');
-                }
-            });
-        }
-    }
 }
 
 function onpresssidebar( id ){
@@ -56,5 +41,21 @@ function onpresssidebar( id ){
             additional.innerHTML='<a href='+json[topic][id].references[i]+'>'+json[topic][id].references[i]+'</a><br>'
         }
     }
+}
+
+//https://developers.google.com/web/tools/workbox/guides/get-started
+//https://www.chromium.org/blink/serviceworker/service-worker-faq für SSL
+if("serviceWorker" in navigator){
+    window.addEventListener("load", function(){
+        navigator.serviceWorker.register("./serviceworker.js")
+        .then(function(registration){
+            console.log("ServiceWorker registered");
+        }).catch(function(err){
+            console.log("ServiceWorker failed");
+            console.log(err);
+        })
+    })
+} else {
+    console.log("ServiceWorker not supported");
 }
 

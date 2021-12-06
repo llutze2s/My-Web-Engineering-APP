@@ -24,6 +24,8 @@
     "purpose": "maskable"
     }
     ],
+    "start_url": "/Übungen/Assets/9.PWA/navigator.html",
+    "scope": "/Übungen/Assets/9.PWA/",
     "background_color": "#448AFF",
     "display": "standalone",
     "theme_color": "#448AFF"

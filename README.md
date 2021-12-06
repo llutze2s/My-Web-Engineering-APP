@@ -4,7 +4,7 @@ this is an WebApp for my Subject "Web Engineering" at the Hochschule Bonn-Rhein-
 
 Webseite:  https://llutze2s.github.io/My-Web-Engineering-APP/
 
-Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/
+Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/   (npx chromatic --project-token=45fe4424b8dc)
 
 ## Inhaltsverzeichnis für die Übungen
 1. [Einführung](./Übungen/Übung1.md)
