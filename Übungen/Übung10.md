@@ -78,7 +78,55 @@ Schreiben Sie eine möglichst flexible Vue.js Single File Component für Menüs 
 
 Geben Sie die Inhalte aller Dateien Ihrer Lösung inkl. JS-Quelltext hintereinander ein. Schreiben Sie vor jede Datei deren Dateiname:
 ```js
+//menuKomponente.mjs
+import MenuKomponente from "./menuKomponente.mjs";
 
+export default {
+    template: `
+        <div style="border: 1px solid black;">
+           <headline :style=direction v-for="topic in this.content" :key="topic" :name="topic"></headline>
+        </div>
+    `,
+
+    props: ['topics','vetrical'],
+    computed: {
+        content: function () {
+            return this.topics.split(",");
+        },
+        direction:function () {
+            return this.vetrical ? {'display': 'block'}:'';
+        }
+    }
+}
+
+Vue.component('headline', {
+    template: '<button>{{name}}</button>',
+    props: ['name']
+});
+
+new Vue({
+    el: "#app",
+    components: {
+        MenuKomponente
+    }
+});
+//menuKomponente.html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Menü</title>
+    <script src="https://unpkg.com/vue"></script>   <!-- VUE einbinden -->
+    <script type="module" src="menuKomponente.mjs"></script> <!-- Modul -->
+</head>
+<body>
+    <h1>Menü Komponente</h1>
+    <div id="app">
+        <menu-komponente topics="CSS,HTML,Java,SQL"></menu-komponente>
+        <hr>
+        <menu-komponente topics="CSS,HTML,Java,SQL" vetrical='true'></menu-komponente>
+    </div>
+</body>
+</html>
 ```
 
 # Aufgabe 10.3: Vue.js WWW-Navigator (5 Punkte)
