@@ -15,5 +15,7 @@ Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/   (npx chromati
 6. [SVG](./Übungen/Übung6.md)
 7. [Node.js](./Übungen/Übung7.md)
 8. [Modular](./Übungen/Übung8.md)
+9. [Progressive Web App](./Übungen/Übung9.md)
+10. [Vue](./Übungen/Übung10.md)
 
 
