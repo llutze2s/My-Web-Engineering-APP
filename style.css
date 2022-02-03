@@ -3,7 +3,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 3fr;
     background-color: white;
-    /*grid-gap: 1px;*/
+    grid-gap: 1px;
     justify-content: stretch; 
 }
 
@@ -11,8 +11,23 @@
     grid-row: 1;
     grid-column: span 3;
     text-align: center;
-    background-color: #4158D0;  /* https://cssgradient.io/gradient-backgrounds/ */
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    background: rgb(97,89,231);  /* https://cssgradient.io/gradient-backgrounds/ */
+    background: linear-gradient(90deg, rgba(97,89,231,1) 0%, rgba(45,45,180,1) 20%, rgba(41,5,150,1) 50%, rgba(45,45,180,1) 80%, rgba(97,89,231,1) 100%);
+    width: 98%;
+    min-height: 100px;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: #290596 0px 4px 6px 0px;
+    cursor: pointer;
+}
+
+.link {
+    width: 100%;
+    height: 100%;
 }
 
 .menu{
@@ -25,7 +40,8 @@
     grid-row: 3;
     grid-column: span 2;
     text-align: center;
-    background-color: lightblue;
+    background: #c8c8c0;
+    border-radius: 15px;
 }
 
 @media (min-width: 992px) {	
