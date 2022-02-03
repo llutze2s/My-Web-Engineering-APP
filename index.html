@@ -4,12 +4,24 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custom Elements einbinden -->
     <script type="module" src="Webseite/components/menu_navbar.js"></script>
+    <script type="module" src="Webseite/components/display_content.js"></script>
+
     <title>Web Engineering APP</title>
   </head>
   <body>
     <div class="page">
-      <div class="headline"><h1>Web Engineering</h1></div>
+
+      <div class="headline">
+        <h1>Web Engineering</h1>
+        <!-- https://www.w3docs.com/snippets/css/how-to-make-a-div-a-clickable-link.html -->
+        <a href="index.html">
+          <span class="link"></span>
+        </a>
+      </div>
+
       <div class="menu">
         <menu-navbar items='["Einführung","Responsive Web Design","Java Script","DOM","Async","SVG","Node.js","Modular","PWA","Vue"]'></menu-navbar>
       </div>
@@ -17,6 +29,7 @@
       <div class="content">
         <p>Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/</p>
       </div>
+
     </div>
   </body>
 </html>
