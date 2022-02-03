@@ -1,0 +1,32 @@
+{
+    "short_name": "WEM App",
+    "name": "Web Engineering App",
+    "icons": [
+    {
+        "src": "wem_32.png",
+        "type": "image/png",
+        "sizes": "32x32"
+    },
+    {
+        "src": "wem_96.png",
+        "type": "image/png",
+        "sizes": "96x96"
+    },
+    {
+        "src": "wem_128.png",
+        "type": "image/png",
+        "sizes": "128x128"
+    },
+    {
+        "src": "wem_600.png",
+        "type": "image/png",
+        "sizes": "600x600",
+        "purpose": "maskable"
+    }
+    ],
+    "start_url": "../../index.html",
+    "scope": "/Webseite/assets/",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "theme_color": "#290596"
+}
