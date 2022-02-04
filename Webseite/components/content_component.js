@@ -1,15 +1,26 @@
 import {LitElement, html, css, unsafeHTML} from 'https://mkaul.github.io/lit/lib/lit.js';
+import { Code_Component } from './code_component.js';
 
-export class Display_Content extends LitElement {
+export class Content_Component extends LitElement {
   static styles = css`
-    p {
+    p,h1,h2 {
       font-family: sans-serif;
+      font-size: 1em;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    h2 {
+      font-size: 1.5em;
     }
 
     blockquote {
       border-radius: 10px;
       color: white;
       font-family: sans-serif;
+      font-size: 1em;
       padding: 5px;
       border: 0.5px solid #290596;
       border-radius: 10px;
@@ -17,8 +28,6 @@ export class Display_Content extends LitElement {
       background: rgb(97,89,231);  /* https://cssgradient.io/gradient-backgrounds/ */
       background: linear-gradient(90deg, rgba(97,89,231,1) 0%, rgba(45,45,180,1) 20%, rgba(41,5,150,1) 50%, rgba(45,45,180,1) 80%, rgba(97,89,231,1) 100%);
     }
-
-
   `;
 
   static properties = {
@@ -72,4 +81,4 @@ export class Display_Content extends LitElement {
     return html`${unsafeHTML(this.content)}`; 
   }
 }
-customElements.define('display-content', Display_Content);
+customElements.define('content-component', Content_Component);

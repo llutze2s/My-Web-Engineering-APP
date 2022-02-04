@@ -14,15 +14,11 @@
     <link rel="manifest" href="/Webseite/assets/manifest.json">
 
     <!-- Custom Elements einbinden -->
-    <script type="module" src="Webseite/components/menu_navbar.js"></script>
-    <script type="module" src="Webseite/components/display_content.js"></script>
+    <script type="module" src="Webseite/components/navbar_component.js"></script>
+    <script type="module" src="Webseite/components/content_component.js"></script>
 
     <!-- Main JS Script -->
     <script src="Webseite/components/main.js"></script>
-
-    <!-- Google Prettify für Codefelder-->
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-
 
     <title>Web Engineering APP</title>
   </head>
@@ -38,7 +34,7 @@
       </div>
 
       <div class="menu">
-        <menu-navbar items='["Einführung","Responsive Web Design","Java Script","DOM","Async","SVG","Node.js","Modular","PWA","Vue"]'></menu-navbar>
+        <navbar-component items='["Einführung","Responsive Web Design","Java Script","DOM","Async","SVG","Node.js","Modular","PWA","Vue"]'></navbar-component>
       </div>
 
       <div class="content" id="content">

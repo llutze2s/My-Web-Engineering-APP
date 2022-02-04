@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'https://mkaul.github.io/lit/lib/lit.js';
 
-export class Menu_navbar extends LitElement {
+export class Navbar_Component extends LitElement {
   static styles = css`
   ul {
     padding: 10px;
@@ -88,4 +88,4 @@ export class Menu_navbar extends LitElement {
   }
 
 }
-customElements.define('menu-navbar', Menu_navbar);
+customElements.define('navbar-component', Navbar_Component);
