@@ -17,9 +17,12 @@
     <script type="module" src="Webseite/components/menu_navbar.js"></script>
     <script type="module" src="Webseite/components/display_content.js"></script>
 
+    <!-- Main JS Script -->
+    <script src="Webseite/components/main.js"></script>
+
     <title>Web Engineering APP</title>
   </head>
-  <body>
+  <body onload="init()">
     <div class="page">
 
       <div class="headline">
@@ -34,8 +37,7 @@
         <menu-navbar items='["Einführung","Responsive Web Design","Java Script","DOM","Async","SVG","Node.js","Modular","PWA","Vue"]'></menu-navbar>
       </div>
 
-      <div class="content">
-        <p>Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/</p>
+      <div class="content" id="content">
       </div>
 
     </div>

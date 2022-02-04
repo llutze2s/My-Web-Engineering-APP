@@ -67,11 +67,11 @@ export class Menu_navbar extends LitElement {
     items: {type: Array},
   };
 
-  static Menuitems;
+  static menuitems;
 
   constructor() {
     super();
-    this.Menuitems = [];
+    this.menuitems = [];
   }
 
   render() {
@@ -79,8 +79,8 @@ export class Menu_navbar extends LitElement {
     for(let i=0;i<this.items.length; i++ ) {
         tmp.push(html`<button type="button" id="${this.items[i]}" @click=${(e) => this._press(e)}>${this.items[i]}</button>`);
     }
-    this.Menuitems = tmp;
-    return html`<div class="direction"><ul>${this.Menuitems}</ul></div>`;
+    this.menuitems = tmp;
+    return html`<div class="direction"><ul>${this.menuitems}</ul></div>`;
   }
 
   _press(e) {
