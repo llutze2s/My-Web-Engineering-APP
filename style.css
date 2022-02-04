@@ -1,10 +1,8 @@
 .page {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 3fr;
-    background-color: white;
-    grid-gap: 1px;
-    justify-content: stretch; 
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
 }
 
 .headline {
@@ -18,7 +16,7 @@
     background: rgb(97,89,231);  /* https://cssgradient.io/gradient-backgrounds/ */
     background: linear-gradient(90deg, rgba(97,89,231,1) 0%, rgba(45,45,180,1) 20%, rgba(41,5,150,1) 50%, rgba(45,45,180,1) 80%, rgba(97,89,231,1) 100%);
     width: 98%;
-    min-height: 100px;
+    max-height: 100px;
     margin: auto;
     border-radius: 15px;
     box-shadow: #290596 0px 4px 6px 0px;
@@ -31,57 +29,44 @@
 }
 
 .menu{
-    grid-row: 2;
-    grid-column: span 2;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 20%;
     text-align: center;
 }
 
 .content{
-    grid-row: 3;
-    grid-column: span 2;
+    flex-grow: 4;
+    flex-shrink: 4;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    margin: 15px 0px 0px 15px;
+    padding: 10px;
+    width: 75%;
+    height: 85vh;
+    overflow: auto;
     text-align: center;
-    background: #c8c8c0;
-    border-radius: 15px;
 }
 
-@media (min-width: 992px) {	
-    .page {
-        display: grid;
-        grid-template-rows: 1fr 3fr;
-        grid-template-columns: 1fr 3fr;
-        background-color: white;
-        grid-gap: 1px;
-        justify-content: stretch;
-    }
-
-    .menu{
-        grid-row: 2;
-        grid-column: 1;
-    }
-
-    .content{
-        grid-row: 2;
-        grid-column: 2;
-    }
+/* Responsive Mobile First */
+@media (max-width: 768px) {
+   .menu, .content{
+       width: 100%;
+   }
 }
 
-@media (min-width: 1200px) {
-    .page {
-        display: grid;
-        grid-template-rows: 1fr 3fr;
-        grid-template-columns: 1fr 3fr;
-        background-color: white;
-        grid-gap: 1px;
-        justify-content: stretch;
-    }
+/* Custom Scrollbar */
+/* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
 
-    .menu{
-        grid-row: 2;
-        grid-column: 1;
-    }
-
-    .content{
-        grid-row: 2;
-        grid-column: 2;
-    }
+::-webkit-scrollbar-thumb {
+    background: rgb(97,89,231);  /* https://cssgradient.io/gradient-backgrounds/ */
+    background: linear-gradient(90deg, rgba(97,89,231,1) 0%, rgba(45,45,180,1) 20%, rgba(41,5,150,1) 50%, rgba(45,45,180,1) 80%, rgba(97,89,231,1) 100%);
+    border-radius: 5px;
 }
