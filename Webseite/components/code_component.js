@@ -1,5 +1,8 @@
 import {LitElement, html, css, unsafeHTML} from 'https://mkaul.github.io/lit/lib/lit.js';
 
+// Prism für den Pritty Print des Codes
+import 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js';
+
 export class Code_Component extends LitElement {
     static styles = css`
         .webseite {
@@ -35,7 +38,6 @@ export class Code_Component extends LitElement {
             background: #f1f1f1;
             border-radius: 5px;
         }
-
         ::-webkit-scrollbar-thumb {
             background: rgb(97,89,231);  /* https://cssgradient.io/gradient-backgrounds/ */
             background: linear-gradient(90deg, rgba(97,89,231,1) 0%, rgba(45,45,180,1) 20%, rgba(41,5,150,1) 50%, rgba(45,45,180,1) 80%, rgba(97,89,231,1) 100%);
@@ -79,9 +81,12 @@ export class Code_Component extends LitElement {
         } else {
             return html`
                 <div class="code" id=${this.path}>
-                    <pre>
-                        <code>
-                            ${this.content}
+                    <!-- Prism für den Pritty Print des Codes -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.min.css">
+
+                    <pre> <!-- Für Design: class language-html -->
+                        <code> <!-- Für Design: class language-html -->
+                            ${unsafeHTML(Prism.highlight(this.content, Prism.languages.html, 'html'))}
                         </code>
                     </pre>
                 </div>
@@ -97,7 +102,6 @@ export class Code_Component extends LitElement {
         } else {
             this.codeView = true;
         }
-        
     }
 }
 customElements.define('code-component', Code_Component);
