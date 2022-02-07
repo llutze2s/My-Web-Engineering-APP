@@ -6,15 +6,20 @@ export class Code_Component extends LitElement {
             max-width: 100%;
             max-height: 100%;
             overflow: auto;
-            border-radius: 5px;
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid #290596;
         }
         .code {
             max-width: 100%;
             max-height: 50%;
             overflow: auto;
             border-radius: 5px;
+            padding: 5px;
+            border-radius: 10px;
+            border: 1.5px solid #290596;
         }
-        pre,code {
+        pre, code {
             white-space: pre-wrap;
             overflow-x: auto;
             text-align: left;
@@ -52,7 +57,8 @@ export class Code_Component extends LitElement {
                 <div class="box" id=${this.path}>
                     ${unsafeHTML(this.content)}
                 </div>
-                <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Code Anzeigen</button>
+                </br>
+                <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Code Ansicht</button>
             `;
         } else {
             return html`
@@ -63,7 +69,8 @@ export class Code_Component extends LitElement {
                         </code>
                     </pre>
                 </div>
-                <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Webseite Anzeigen</button>
+                </br>
+                <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Webseite Ansicht</button>
             `;
         }
     }
