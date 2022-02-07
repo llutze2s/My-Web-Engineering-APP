@@ -12,8 +12,9 @@ export class Code_Component extends LitElement {
             padding: none;
         }
         .code {
-            max-width: 100%;
-            max-height: 50%;
+            max-width: 95%;
+            max-height: 50vh;
+            margin: auto;
             overflow: auto;
             border-radius: 5px;
             border-radius: 10px;
