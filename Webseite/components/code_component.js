@@ -25,6 +25,21 @@ export class Code_Component extends LitElement {
             text-align: left;
             tab-size: 1;
         }
+        /* Custom Scrollbar */
+        /* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgb(97,89,231);  /* https://cssgradient.io/gradient-backgrounds/ */
+            background: linear-gradient(90deg, rgba(97,89,231,1) 0%, rgba(45,45,180,1) 20%, rgba(41,5,150,1) 50%, rgba(45,45,180,1) 80%, rgba(97,89,231,1) 100%);
+            border-radius: 5px;
+        }
     `
 
     static properties = {
