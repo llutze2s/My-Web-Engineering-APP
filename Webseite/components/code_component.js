@@ -2,20 +2,20 @@ import {LitElement, html, css, unsafeHTML} from 'https://mkaul.github.io/lit/lib
 
 export class Code_Component extends LitElement {
     static styles = css`
-        .box {
-            max-width: 100%;
-            max-height: 100%;
+        .webseite {
+            max-width: 95%;
+            max-height: 50vh;
+            margin: auto;
             overflow: auto;
-            padding: 5px;
             border-radius: 10px;
             border: 1px solid #290596;
+            padding: none;
         }
         .code {
             max-width: 100%;
             max-height: 50%;
             overflow: auto;
             border-radius: 5px;
-            padding: 5px;
             border-radius: 10px;
             border: 1.5px solid #290596;
         }
@@ -69,7 +69,7 @@ export class Code_Component extends LitElement {
     render() {  // https://stackoverflow.com/questions/57103073/lit-element-outputting-raw-html-from-property-string
         if(this.codeView == false){
             return html`
-                <div class="box" id=${this.path}>
+                <div class="webseite" id=${this.path}>
                     ${unsafeHTML(this.content)}
                 </div>
                 </br>
