@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                width: 100%;
+                height: 100%;
+            }
+            
+            .page {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .headline {
+                background-color: red;
+                width: 100%;
+            }
+
+            .left{
+                background-color: green;
+                flex-grow: 1;
+                flex-shrink: 1;
+                width: 20%;
+            }
+
+            .content{
+                background-color: blue;
+                flex-grow: 4;
+                flex-shrink: 4;
+                width: 60%;
+            }
+            
+            .right{
+                background-color: violet;
+                flex-grow: 1;
+                flex-shrink: 1;
+                width: 20%;
+            }
+
+            /* joegalley.com/articles/mobile-first-vs-desktop-first-media-queries */
+            @media (max-width: 992px) {	
+                .content{
+                    width: 80%;
+                }
+                .right{
+                    width: 100%;
+                }
+            }
+
+            @media (max-width: 768px) {
+               .left, .right, .content{
+                   width: 100%;
+               }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <div class="headline"><h1>Headline</h1></div>
+            <div class="left"><h2>Left</h2></div>
+            <div class="content"><h2>Content</h2></div>
+            <div class="right"><h2>Right</h2></div>
+        </div>
+    </body>
+</html>

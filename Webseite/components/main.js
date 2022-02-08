@@ -9,6 +9,7 @@ function init(){
 
 function alertObserver(e){
     content_component.setAttribute("topic",e);
+    content_component.loadContent();
 }
 
 //https://developers.google.com/web/tools/workbox/guides/get-started

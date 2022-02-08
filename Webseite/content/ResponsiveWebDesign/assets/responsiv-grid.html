@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .grid {
+                height: 100%;
+                width: 100%;
+                display: grid;
+                grid-template-rows: 1fr 1fr 4fr 1fr;
+                grid-template-columns: 1fr 1fr;
+            }
+            .header{
+                grid-row: 1;
+                grid-column: span 2;
+                text-align: center;
+                background-color: #363636;
+                color: white;
+                padding: 10px;
+                line-height: 40px;
+            }
+            .title{
+                grid-row: 2;
+                grid-column: span 2;
+                background-color: #EBEAE5;
+                text-align: center;
+                font-size: 28px;
+                color: black;
+            }
+            .left {
+                grid-row: 3;
+                grid-column: 1;
+                background-color: #EBEAE5;
+            }
+            .right {
+                grid-row: 3;
+                grid-column: 2;
+                background-color: #EBEAE5;
+                color: black;
+                text-align: center;
+                padding-top: 5%;
+                font-weight: bold;
+                font-size: 15px;
+            }
+            .footer {
+                grid-row: 4;
+                grid-column: span 2;
+                background-color: #061825;
+                text-align: center;
+                color: #747171; 
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            @media (max-width: 768px) {
+                .grid {
+                    height: 100vh;
+                    width: 100vw;
+                    display: grid;
+                    grid-template-rows: 1fr 1fr 2fr 2fr 1fr;
+                    grid-template-columns: 1fr;
+                }
+                .left {
+                    grid-row: 3;
+                    grid-column: 1;
+                }
+                .right {
+                    grid-row: 4;
+                    grid-column: 1;
+                }
+                .footer {
+                    grid-row: 5;
+                    grid-column: 1;
+                }
+            }
+
+            p{
+                margin: 25px;
+            }
+
+            .flex{
+                padding: 5px;
+                display: flex;
+                justify-content: center; 
+                align-items: center;
+            }
+
+            img{
+                border: 1px solid black;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid">
+            <div class="header">
+                    The book series
+                    Testimonials
+                    The Author
+                    Free resources
+            </div>
+            <div class="title">
+                <b>You dont know JavaScript</b>
+            </div>
+            <div class="left">
+                <div class="flex">
+                    <img style="width: 200px;" src=https://kaul.inf.h-brs.de/wem/assets/img/landing-img.png>
+                </div>
+            </div>
+            <div class="right">
+                <p>Don´t just drift thought javascript.</p>
+                <p>Understand how javascrupt works</p>
+                <p>Start your journy thought the bumpy side of javascript</p>
+                <p><button style="background: #F88E37; border-radius: 5px; width: 80%; color: white;">ORDER YOUR COPY NOW</button></p>
+            </div>
+            <div class="footer">
+                The first ebook in the book series is absolutly free.</br>
+                <button style="background: #F88E37; border-radius: 5px; width: 60%; color: white;">FIND OUR MORE ABOUT OFFER</button>
+            </div>
+        </div>
+    </body>
+</html>
