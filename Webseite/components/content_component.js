@@ -45,9 +45,10 @@ export class Content_Component extends LitElement {
     
     switch (this.topic){
       case "Einführung":
-        path = "Webseite/content/einfuerung/einfuerung.html";
+        path = "Webseite/content/Einfuerung/content.html";
         break;
       case "Responsive Web Design":
+        path = "Webseite/content/ResponsiveWebDesign/content.html";
         break;
       case "Java Script":
         break;
