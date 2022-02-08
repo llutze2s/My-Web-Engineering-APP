@@ -6,22 +6,27 @@ import 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js';
 export class Code_Component extends LitElement {
     static styles = css`
         .webseite {
-            max-width: 95%;
+            width: 95%;
+            max-width: 1250px;
             max-height: 50vh;
             margin: auto;
             overflow: auto;
             border-radius: 10px;
+            border-bottom-right-radius: 0;
             border: 1px solid #290596;
             padding: none;
+            resize: both;
         }
         .code {
-            max-width: 95%;
+            width: 95%;
+            max-width: 1250px;
             max-height: 50vh;
             margin: auto;
             overflow: auto;
             border-radius: 5px;
             border-radius: 10px;
             border: 1.5px solid #290596;
+            resize: both;
         }
         pre, code {
             white-space: pre-wrap;
