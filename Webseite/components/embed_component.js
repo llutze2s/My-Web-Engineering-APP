@@ -61,7 +61,8 @@ export class Embed_Component extends LitElement {
     static properties = {
         path: {type: String},
         content: {type: String},
-        codeView: {type: Boolean}
+        codeView: {type: Boolean},
+        noButton: {type: Boolean}
     };
 
     constructor() {
@@ -89,7 +90,10 @@ export class Embed_Component extends LitElement {
                     <embed src=${this.path} type="text/html"></embed>
                 </div>
                 </br>
-                <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Code Ansicht</button>
+                ${this.noButton
+                    ? html``
+                    : html`<button type="button" id=${this.path} @click=${(e) => this._press(e)}>Code Ansicht</button>`
+                }    
             `;
         } else {
             return html`
