@@ -7,9 +7,12 @@ export class Content_Component extends LitElement {
   static styles = css`
     p,h1,h2,h3 {
       font-family: sans-serif;
+      text-align: left;
+      padding: 5px;
     }
 
     h1 {
+      text-align: center;
       font-size: 2.5em;
     }
 
@@ -63,6 +66,7 @@ export class Content_Component extends LitElement {
         path = "Webseite/content/JavaScript/content.html";
         break;
       case "DOM":
+        path = "Webseite/content/DOM/content.html";
         break;
       case "Async":
         break;
