@@ -3,7 +3,7 @@ import {LitElement, html, css, unsafeHTML} from 'https://mkaul.github.io/lit/lib
 // Prism für den Pritty Print des Codes
 import 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js';
 
-export class JsInteractive_Component extends LitElement {
+export class CodeStyle_Component extends LitElement {
     static styles = css`
         .code {
             width: 95%;
@@ -58,4 +58,4 @@ export class JsInteractive_Component extends LitElement {
         `;
     }
 }
-customElements.define('jsinteractive-component', JsInteractive_Component);
+customElements.define('codestyle-component', CodeStyle_Component);

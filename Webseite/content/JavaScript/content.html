@@ -8,19 +8,19 @@
 <h3>Aufgabe 3.1.1</h3>
 <p>Schreiben Sie eine Funktion `identity_function()`, die ein Argument als Parameter entgegen nimmt und eine Funktion zurück gibt, die dieses Argument zurück gibt.</p>
 <br>
-<jsinteractive-component id="3.1.1" 
+<codestyle-component id="3.1.1" 
 content="
     function identity_function(param) {
         return function() {
             return param;
         }
     }
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.2</h3>
 <p>Schreiben Sie eine Addier-Funktion `addf()`, so dass `addf(x)(y)` genau x + y zurück gibt. <br>(Es haben also zwei Funktionsaufrufe zu erfolgen. `addf(x)` liefert eine Funktion, die auf y angewandt wird.)</p>
 <br>
-<jsinteractive-component id="3.1.2" 
+<codestyle-component id="3.1.2" 
 content="
     function add(x,y){
         return x+y;
@@ -34,12 +34,12 @@ content="
     
     document.getElementById('ausgabe1.2').innerHTML = 'Aufgabe 3.1.2: Ergebnis: ' + addf(2)(4);        
     <p id='ausgabe1.2'></p>
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.3</h3>
 <p>Schreiben Sie eine Funktion `applyf()`, die aus einer binären Funktion wie `add(x,y)` eine Funktion addf berechnet, die mit zwei Aufrufen das gleiche Ergebnis liefert, z.B. `addf = applyf(add); addf(x)(y)` soll `add(x,y)` liefern. Entsprechend `applyf(mul)(5)(6)` soll 30 liefern, wenn mul die binäre Multiplikation ist.</p>
 <br>
-<jsinteractive-component id="3.1.3" 
+<codestyle-component id="3.1.3" 
 content="
     function mul(x,y){
         return x*y;
@@ -55,13 +55,13 @@ content="
     
     document.getElementById('ausgabe1.3').innerHTML = 'Aufgabe 3.1.3: Ergebnis: ' + applyf(mul)(5)(6);   
     <p id='ausgabe1.3'></p>
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.4</h3>
 <p>Schreiben Sie eine Funktion `curry()` (von Currying), die eine binäre Funktion und ein Argument nimmt, um daraus eine Funktion zu erzeugen, die ein zweites Argument entgegen nimmt, z.B. `add3 = curry(add, 3);add3(4)` ergibt 7. `curry(mul, 5)(6)` ergibt 30.
 </p>
 <br>
-<jsinteractive-component id="3.1.4" 
+<codestyle-component id="3.1.4" 
 content="
     function curry(operant, number) {
         return function(y){
@@ -70,26 +70,26 @@ content="
     }
 
     document.getElementById('ausgabe1.4').innerHTML = 'Aufgabe 3.1.4: Ergebnis: ' + curry(mul, 5)(6);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.5</h3>
 <p>Erzeugen Sie die inc-Funktion mit Hilfe einer der Funktionen `addf, applyf` und `curry` aus den letzten Aufgaben, ohne die Funktion `inc()` selbst zu implementieren. (`inc(x)` soll immer x + 1 ergeben und lässt sich natürlich auch direkt implementieren. Das ist aber hier nicht die Aufgabe.) Vielleicht schaffen Sie es auch, drei Varianten der `inc()`-Implementierung zu schreiben?
 </p>
 <br>
-<jsinteractive-component id="3.1.5" 
+<codestyle-component id="3.1.5" 
 content="
     function inc(x){
         return addf(x)(1);
     }
 
     document.getElementById('ausgabe1.5').innerHTML = 'Aufgabe 3.1.5: Ergebnis: ' + inc(1);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.6</h3>
 <p>Schreiben Sie eine Funktion methodize(), die eine binäre Funktion (z.B. add, mul) in eine unäre Methode verwandelt. Nach `Number.prototype.add = methodize(add);` soll `(3).add(4)` genau 7 ergeben.
 </p>
 <br>
-<jsinteractive-component id="3.1.6" 
+<codestyle-component id="3.1.6" 
 content="
     function methodize(operant){
         return function(y){
@@ -99,13 +99,13 @@ content="
 
     Number.prototype.add = methodize(add);
     document.getElementById('ausgabe1.6').innerHTML = 'Aufgabe 3.1.6: Ergebnis: ' + (3).add(4);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.7</h3>
 <p>Schreiben Sie eine Funktion `demethodize()`, die eine unäre Methode (z.B. add, mul) in eine binäre Funktion umwandelt. `demethodize(Number.prototype.add)(5, 6)` soll 11 ergeben.
 </p>
 <br>
-<jsinteractive-component id="3.1.7" 
+<codestyle-component id="3.1.7" 
 content="
     function demethodize(operant){
         return function(x,y){
@@ -114,13 +114,13 @@ content="
     }
 
     document.getElementById('ausgabe1.7').innerHTML = 'Aufgabe 3.1.7: Ergebnis: ' + demethodize(Number.prototype.add)(5, 6);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.8</h3>
 <p>Schreiben Sie eine Funktion `twice()`, die eine binäre Funktion in eine unäre Funktion umwandelt, die den einen Parameter zweimal weiter reicht. Z.B. `var double = twice(add); double(11)` soll 22 ergeben; `var square = twice(mul); square(11) soll mul(11,11) === 121` ergeben.
 </p>
 <br>
-<jsinteractive-component id="3.1.8" 
+<codestyle-component id="3.1.8" 
 content="
     var double = twice(add);
     var square = twice(mul);
@@ -131,13 +131,13 @@ content="
     }
 
     document.getElementById('ausgabe1.8').innerHTML = 'Aufgabe 3.1.8: Ergebnis: 11^2 = ' + square(11) + ' 11+11 = ' + double(11);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.9</h3>
 <p>Schreiben Sie eine Funktion `composeu()`, die zwei unäre Funktionen in eine einzelne unäre Funktion transformiert, die beide nacheinander aufruft, z.B. soll `composeu(double, square)(3)` genau 36 ergeben.
 </p>
 <br>
-<jsinteractive-component id="3.1.9" 
+<codestyle-component id="3.1.9" 
 content="
     function composeu(operant1, operant2){
         return function(x){
@@ -146,13 +146,13 @@ content="
     }
 
     document.getElementById('ausgabe1.8').innerHTML = 'Aufgabe 3.1.8: ' + composeu(double, square)(3);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.10</h3>
 <p>Schreiben Sie eine Funktion `composeb()`, die zwei binäre Funktionen in eine einzelne Funktion transformiert, die beide nacheinander aufruft, z.B. `composeb(add, mul)(2, 3, 5)` soll 25 ergeben.
 </p>
 <br>
-<jsinteractive-component id="3.1.10" 
+<codestyle-component id="3.1.10" 
 content="
     function composeb(operant1, operant2){
         return function(x,y,z){
@@ -161,13 +161,13 @@ content="
     }
 
     document.getElementById('ausgabe1.10').innerHTML = 'Aufgabe 3.1.10: ' + composeb(add, mul)(2, 3, 5);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.11</h3>
 <p>Schreiben Sie eine Funktion `once()`, die einer anderen Funktion nur einmal erlaubt, aufgerufen zu werden, z.B. `add_once = once(add); add_once(3, 4)` soll beim ersten Mal 7 ergeben, beim zweiten Mal soll jedoch `add_once(3, 4)` einen Fehlerabbruch bewirken.
 </p>
 <br>
-<jsinteractive-component id="3.1.11" 
+<codestyle-component id="3.1.11" 
 content="
     var add_once = once(add);
     var text1 = add_once(3,4);
@@ -192,12 +192,12 @@ content="
     }
 
     document.getElementById('ausgabe1.11').innerHTML = 'Aufgabe 3.1.11: ' + text1 + ', zweites Mal: ' + text2;
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.12</h3>
 <p>Schreiben Sie eine Fabrik-Funktion `counterf()`, die zwei Funktionen `inc()` und `dec()` berechnet, die einen Zähler hoch- und herunterzählen. Z.B. `counter = counterf(10);` Dann soll counter.`inc() 11` und `counter.dec()` wieder 10 ergeben.</p>
 <br>
-<jsinteractive-component id="3.1.12" 
+<codestyle-component id="3.1.12" 
 content="
     var counter = counterf(10);
 
@@ -209,7 +209,7 @@ content="
     }
 
     document.getElementById('ausgabe1.12').innerHTML = 'Aufgabe 3.1.12: inc: ' + counter.inc() + ' dec: ' + counter.dec();
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.13</h3>
 <p>Schreiben Sie eine rücknehmbare Funktion revocable(), die als Parameter eine Funktion nimmt und diese bei Aufruf ausführt. Sobald die Funktion aber mit revoke() zurück genommen wurde, führt ein erneuter Aufruf zu einem Fehler. Z.B.<br>
@@ -218,7 +218,7 @@ content="
     `temp.revoke();`<br>
     `temp.invoke(8); // Fehlerabbruch!`</p>
 <br>
-<jsinteractive-component id="3.1.13" 
+<codestyle-component id="3.1.13" 
 content="
     var temp = revocable(mul)  //mul statt alert damit man es besser in die Seite einbinden kann
 
@@ -240,7 +240,7 @@ content="
     }
 
     document.getElementById('ausgabe1.13').innerHTML = 'Aufgabe 3.1.13: '+ temp.invoke(7) + ', ' + temp.revoke() + ', ' + temp.invoke(8);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.1.14</h3>
 <p>Implementieren Sie ein 'Array Wrapper'-Objekt mit den Methoden get, store und append, so dass ein Angreifer keinen Zugriff auf das innere, private Array hat.<br>
@@ -251,7 +251,7 @@ content="
     `my_vector.get(1) // 8`
     </p>
 <br>
-<jsinteractive-component id="3.1.14" 
+<codestyle-component id="3.1.14" 
 content="
     var my_vector = vector();
 
@@ -271,7 +271,7 @@ content="
     }
 
     document.getElementById('ausgabe1.14').innerHTML = 'Aufgabe 3.1.14: 7 anhängen: '+ my_vector.append(7) + ',\n Stelle 1 eine 8 einfügen: ' + my_vector.store(1, 8) +', \n Array an Stelle 1 ausgeben: ' + my_vector.get(0) + ', \n Array an Stelle 2 ausgeben: ' + my_vector.get(1);
-"></jsinteractive-component>
+"></codestyle-component>
 
 
 <h3>Aufgabe 3.2.1</h3>
@@ -280,7 +280,7 @@ content="
     `my_pubsub.subscribe(alert);`<br>
     `my_pubsub.publish('It works!'); // alert('It works!')`</p>
 <br>
-<jsinteractive-component id="3.2.1" 
+<codestyle-component id="3.2.1" 
 content="
     var text;
 
@@ -307,7 +307,7 @@ content="
     my_pubsub.publish('It works!'); // alert('It works!')
 
     document.getElementById('ausgabe2.1').innerHTML = 'Aufgabe 3.2.1: '+text;
-"></jsinteractive-component>
+"></codestyle-component>
 
 
 <h3>Aufgabe 3.2.2</h3>
@@ -318,7 +318,7 @@ content="
     `gensym() // 'G2'`<br>
     `gensym() // 'G3'`</p>
 <br>
-<jsinteractive-component id="3.1.16" 
+<codestyle-component id="3.1.16" 
 content="
     function gensymf(symb){
         var count = 0;
@@ -331,7 +331,7 @@ content="
     gensym = gensymf('G');
 
     document.getElementById('ausgabe2.2').innerHTML = 'Aufgabe 3.2.2: '+gensym()+', '+gensym()+', '+gensym()+', '+gensym();
-"></jsinteractive-component>
+"></codestyle-component>
 
 
 <h3>Aufgabe 3.2.3</h3>
@@ -344,7 +344,7 @@ content="
     `fib() // 3`<br>
     `fib() // 5`</p>
 <br>
-<jsinteractive-component id="3.2.3" 
+<codestyle-component id="3.2.3" 
 content="
     var fib = fibonaccif(0, 1);
 
@@ -360,14 +360,14 @@ content="
     }
 
     document.getElementById('ausgabe2.3').innerHTML = 'Aufgabe 3.2.3: '+fib()+', '+fib()+', '+fib()+', '+fib()+', '+fib()+', '+fib();
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.4</h3>
 <p>Write a function that adds from many invocations, until it sees an empty invocation.<br>
     `addg(3)(4)(5)() // 12`<br>
     `addg(1)(2)(4)(8)() // 15`</p>
 <br>
-<jsinteractive-component id="3.2.4" 
+<codestyle-component id="3.2.4" 
 content="
     function addg(x) {
         var sum = x;
@@ -381,14 +381,14 @@ content="
     }
 
     document.getElementById('ausgabe2.4').innerHTML = 'Aufgabe 3.2.4: ' +addg(3)(4)(5)()+', '+addg(1)(2)(4)(8)();
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.5</h3>
 <p>Write a function that will take a binary function and apply it to many invocations.<br>
     `applyg(add)(3)(4)(5)() // 12`<br>
     `applyg(add)(1)(2)(4)(8)() // 15`</p>
 <br>
-<jsinteractive-component id="3.2.5" 
+<codestyle-component id="3.2.5" 
 content="
     function add(x,y) {
         return x+y;
@@ -407,27 +407,27 @@ content="
     }
 
     document.getElementById('ausgabe2.5').innerHTML = 'Aufgabe 3.2.5: '+ applyg(add)(3)(4)(5)()+', '+applyg(add)(1)(2)(4)(8)();
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.6</h3>
 <p>Write a function `m` that takes a value and an optional source string and returns them in an object.<br>
     `JSON.stringify(m(1)) // {'value': 1, 'source': '1'}`<br>
     `JSON.stringify(m(Math.PI, 'pi')) // {'value': 3.14159..., 'source': 'pi'}`</p>
 <br>
-<jsinteractive-component id="3.2.3" 
+<codestyle-component id="3.2.3" 
 content="
     function m(value,source){
         return {'value':value,'source':(typeof source==='undefined'?value:source)};
     }
 
     document.getElementById('ausgabe2.6').innerHTML = 'Aufgabe 3.2.6: '+JSON.stringify(m(1))+', '+JSON.stringify(m(Math.PI, 'pi'));
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.7</h3>
 <p>Write a function `addm` that takes two m objects and returns an m object.<br>
     `JSON.stringify(addm(m(3), m(4))) // {'value': 7, 'source': '(3+4)'}`</p>
 <br>
-<jsinteractive-component id="3.2.7" 
+<codestyle-component id="3.2.7" 
 content="
     function m(value,source){
         return {'value':value,'source':(typeof source==='undefined'?value:source)};
@@ -438,14 +438,14 @@ content="
     }
 
     document.getElementById('ausgabe2.7').innerHTML = 'Aufgabe 3.2.7: '+JSON.stringify(addm(m(3), m(4)));
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.8</h3>
 <p>Write a function `binarymf` that takes a binary function and a string and returns a function that acts on m objects.<br>
     `addm = binarymf(add, '+');`<br>
     `JSON.stringify(addm(m(3), m(4))) // {'value': 7, 'source': '(3+4)'}`</p>
 <br>
-<jsinteractive-component id="3.2.8" 
+<codestyle-component id="3.2.8" 
 content="
     addm2 = binarymf(add, '+');
 
@@ -456,14 +456,14 @@ content="
     }
 
     document.getElementById('ausgabe2.8').innerHTML = 'Aufgabe 3.2.8: '+JSON.stringify(addm2(3, 4));
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.9</h3>
 <p>Modify function binarymf so that the functions it produces can accept arguments that are either numbers or m objects.<br>
     `addm = binarymf(add, '+');`<br>
     `JSON.stringify(addm(3, 4)) // {'value': 7, 'source': '(3+4)'}`</p>
 <br>
-<jsinteractive-component id="3.2.9" 
+<codestyle-component id="3.2.9" 
 content="
     addm3 = binarymf3(add, '+');
 
@@ -480,14 +480,14 @@ content="
     }
 
     document.getElementById('ausgabe2.9').innerHTML = 'Aufgabe 3.2.9: '+JSON.stringify(addm3(m(3), 4));
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.10</h3>
 <p>Write function `unarymf`, which is like binarymf except that it acts on unary functions.<br>
     `squarem = unarymf(square, 'square');`<br>
     `JSON.stringify(squarem(4)) // {'value': 16, 'source': '(square 4)'}`</p>
 <br>
-<jsinteractive-component id="3.2.10" 
+<codestyle-component id="3.2.10" 
 content="
     squarem = unarymf(square, 'square');
 
@@ -502,20 +502,20 @@ content="
     }
 
     document.getElementById('ausgabe2.10').innerHTML = 'Aufgabe 3.2.10: '+JSON.stringify(squarem(4));
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.11</h3>
 <p>Write a function that takes the lengths of two sides of a triangle and computes the length of the hypotenuse. `(Hint: c2 = a2 + b2)`<br>
     `hyp(3, 4) // 5`</p>
 <br>
-<jsinteractive-component id="3.2.11" 
+<codestyle-component id="3.2.11" 
 content="
     function hyp(a,b){
         return Math.sqrt(square(a)+square(b));
     }
 
     document.getElementById('ausgabe2.11').innerHTML = 'Aufgabe 3.2.11: '+hyp(3, 4);
-"></jsinteractive-component>
+"></codestyle-component>
 
 
 <h3>Aufgabe 3.2.12</h3>
@@ -523,7 +523,7 @@ content="
     `hypa = [ Math.sqrt, [ add, [mul, 3, 3], [mul, 4, 4] ] ];`<br>
     `exp(hypa) // 5`</p>
 <br>
-<jsinteractive-component id="3.2.12" 
+<codestyle-component id="3.2.12" 
 content="
     function mul(x,y){
         return x*y;
@@ -542,14 +542,14 @@ content="
     }
 
     document.getElementById('ausgabe2.12').innerHTML = 'Aufgabe 3.2.12: '+exp(hypa);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.13</h3>
 <p>Make a function that stores a value in a variable.<br>
     `var variable; store(5); // variable === 5`
     </p>
 <br>
-<jsinteractive-component id="3.2.13" 
+<codestyle-component id="3.2.13" 
 content="
     var variable;
 
@@ -560,13 +560,13 @@ content="
     store(5);
 
     document.getElementById('ausgabe2.13').innerHTML = 'Aufgabe 3.2.13: '+(variable === 5);
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.14</h3>
 <p>Make a function that takes a binary function, two functions that provide operands, and a function that takes the result.<br>
     `quatre( add, identityf(3), identityf(4), store ); // variable === 7`</p>
 <br>
-<jsinteractive-component id="3.2.14" 
+<codestyle-component id="3.2.14" 
 content="
     function identityf(param) {
         return function() {
@@ -581,13 +581,13 @@ content="
     quatre( add, identityf(3), identityf(4), store)
 
     document.getElementById('ausgabe2.14').innerHTML = 'Aufgabe 3.2.14: '+variable;
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.15</h3>
 <p>Make a function that takes a unary function, and returns a function that takes an argument and a callback.<br>
     `sqrtc = unaryc(Math.sqrt); sqrt(81, store) // variable === 9`</p>
 <br>
-<jsinteractive-component id="3.2.15" 
+<codestyle-component id="3.2.15" 
 content="
     sqrtc = unaryc(Math.sqrt);
     sqrtc(81, store);
@@ -599,14 +599,14 @@ content="
     }
 
     document.getElementById('ausgabe2.15').innerHTML = 'Aufgabe 3.2.15: '+variable;
-"></jsinteractive-component>
+"></codestyle-component>
 
 <h3>Aufgabe 3.2.16</h3>
 <p>Make a function that takes a binary function, and returns a function that takes two arguments and a callback.<br>
     `addc = binaryc(add); addc(4, 5, store) // variable === 9`<br>
     `mulc = binaryc(mul); mulc(2, 3, store) // variable === 6`</p>
 <br>
-<jsinteractive-component id="3.2.16" 
+<codestyle-component id="3.2.16" 
 content="
     var tmp = 0;
     addc = binaryc(add); addc(4, 5, store)
@@ -620,4 +620,4 @@ content="
     }
 
     document.getElementById('ausgabe2.16').innerHTML = 'Aufgabe 3.2.16: '+tmp+', '+variable;
-"></jsinteractive-component>
+"></codestyle-component>

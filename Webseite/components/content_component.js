@@ -1,7 +1,7 @@
 import {LitElement, html, css, unsafeHTML} from 'https://mkaul.github.io/lit/lib/lit.js';
 import { Code_Component } from './code_component.js';
 import { Embed_Component } from './embed_component.js';
-import { JsInteractive_Component } from './jsinteractive_component.js';
+import { CodeStyle_Component } from './codestyle_component.js';
 
 export class Content_Component extends LitElement {
   static styles = css`
