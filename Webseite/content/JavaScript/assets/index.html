@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JavaScript</title>
+    <!--Schönere Code Blöcke Quelle: https://github.com/googlearchive/code-prettify -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+<body>
+    <h1>Aufgabe 3.1</h1>
+    <h2>Aufgabe 3.1.1</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function identity_function(param) {
+            return function() {
+                return param;
+            }
+        }
+    </pre>
+    <p id="ausgabe1.1"></p>
+
+    <h2>Aufgabe 3.1.2</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function add(x,y){
+            return x+y;
+        }
+        
+        function addf(x) {
+            return function (y) {
+                return add(x,y);
+            }
+        }
+        
+        document.getElementById("ausgabe1.2").innerHTML = "Aufgabe 3.1.2: Ergebnis: " + addf(2)(4);        
+    </pre>
+    <p id="ausgabe1.2"></p>
+    
+    <h2>Aufgabe 3.1.3</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function mul(x,y){
+            return x*y;
+        }
+        
+        function applyf(operant) {
+            return function (x) {
+                return function (y) {
+                    return operant(x,y);
+                }
+            }
+        }
+        
+        document.getElementById("ausgabe1.3").innerHTML = "Aufgabe 3.1.3: Ergebnis: " + applyf(mul)(5)(6);   
+    </pre>
+    <p id="ausgabe1.3"></p>
+
+    <h2>Aufgabe 3.1.4</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function curry(operant, number) {
+            return function(y){
+                return operant(number,y);
+            }
+        }
+        
+        document.getElementById("ausgabe1.4").innerHTML = "Aufgabe 3.1.4: Ergebnis: " + curry(mul, 5)(6);
+    </pre>
+    <p id="ausgabe1.4"></p>
+
+    <h2>Aufgabe 3.1.5</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function inc(x){
+            return addf(x)(1);
+        }
+        
+        document.getElementById("ausgabe1.5").innerHTML = "Aufgabe 3.1.5: Ergebnis: " + inc(1);
+    </pre>
+    <p id="ausgabe1.5"></p>
+
+    <h2>Aufgabe 3.1.6</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function methodize(operant){
+            return function(y){
+                return operant(this.valueOf(), y);
+            }
+        }
+        
+        Number.prototype.add = methodize(add);
+        document.getElementById("ausgabe1.6").innerHTML = "Aufgabe 3.1.6: Ergebnis: " + (3).add(4);
+    </pre>
+    <p id="ausgabe1.6"></p>
+
+    <h2>Aufgabe 3.1.7</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function demethodize(operant){
+            return function(x,y){
+                return operant.call(x,y);
+            }
+        }
+        
+        document.getElementById("ausgabe1.7").innerHTML = "Aufgabe 3.1.7: Ergebnis: " + demethodize(Number.prototype.add)(5, 6);
+    </pre>
+    <p id="ausgabe1.7"></p>
+    
+    <h2>Aufgabe 3.1.8</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        var double = twice(add);
+        var square = twice(mul);
+        function twice(operant){
+            return function(x){
+                return operant(x,x);
+            }
+        }
+
+        document.getElementById("ausgabe1.8").innerHTML = "Aufgabe 3.1.8: Ergebnis: 11^2 = " + square(11) + " 11+11 = " + double(11);
+    </pre>
+    <p id="ausgabe1.8"></p>
+
+    <h2>Aufgabe 3.1.9</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function composeu(operant1, operant2){
+            return function(x){
+                return operant2(operant1(x));
+            }
+        }
+        
+        document.getElementById("ausgabe1.8").innerHTML = "Aufgabe 3.1.8: " + composeu(double, square)(3);
+    </pre>
+    <p id="ausgabe1.9"></p>
+
+    <h2>Aufgabe 3.1.10</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        function composeb(operant1, operant2){
+            return function(x,y,z){
+                return operant2(operant1(x,y),z);
+            }
+        }
+        
+        document.getElementById("ausgabe1.10").innerHTML = "Aufgabe 3.1.10: " + composeb(add, mul)(2, 3, 5);
+    </pre>
+    <p id="ausgabe1.10"></p>
+
+    <h2>Aufgabe 3.1.11</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        //Aufgabe 3.1.11
+        var add_once = once(add);
+        var text1 = add_once(3,4);
+        var text2 = "";
+
+        function once(operant){
+            var bereitsaufgerufen = false;
+            return function(x,y){
+                if(!bereitsaufgerufen){   
+                        bereitsaufgerufen = true;
+                        return operant(x,y);
+                } else {
+                    throw 'bereits aufgerufen!';
+                }
+            }
+        }
+
+        try{
+            text2 = add_once(3,4);
+        }catch(e){
+            text2 = e;
+        }
+
+        document.getElementById("ausgabe1.11").innerHTML = "Aufgabe 3.1.11: " + text1 + ", zweites Mal: " + text2;
+    </pre>
+    <p id="ausgabe1.11"></p>
+
+    <h2>Aufgabe 3.1.12</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        var counter = counterf(10);
+
+        function counterf(x){
+            return{
+                inc: function() { return x = x + 1;},
+                dec: function() { return x = x - 1;}
+            }
+        }
+
+        document.getElementById("ausgabe1.12").innerHTML = "Aufgabe 3.1.12: inc: " + counter.inc() + " dec: " + counter.dec();
+    </pre>
+    <p id="ausgabe1.12"></p>
+
+    <h2>Aufgabe 3.1.13</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        var temp = revocable(mul)  //mul statt alert damit man es besser in die Seite einbinden kann
+
+        function revocable(fun) {
+            var error = false;
+            return {
+                invoke: function () {
+                    if(error){
+                        return "Fehler !";
+                    } else {
+                        return fun.apply(this, arguments);
+                    }
+                },
+                revoke: function () {
+                    error = true;
+                    fun = null;
+                }
+            }
+        }
+
+        document.getElementById("ausgabe1.13").innerHTML = "Aufgabe 3.1.13: "+ temp.invoke(7) + ", " + temp.revoke() + ", " + temp.invoke(8);
+    </pre>
+    <p id="ausgabe1.13"></p>
+
+    <h2>Aufgabe 3.1.14</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        var my_vector = vector();
+
+        function vector(){
+            var array = [];
+            return{
+                append:function (value) {
+                    return array[length] = value;
+                },
+                store:function (key, value) {
+                    return array[key] = value;
+                },
+                get:function (key) {
+                    return array[key];
+                }
+            }
+        }
+
+        document.getElementById("ausgabe1.14").innerHTML = "Aufgabe 3.1.14: 7 anhängen: "+ my_vector.append(7) + ",\n Stelle 1 eine 8 einfügen: " + my_vector.store(1, 8) +", \n Array an Stelle 1 ausgeben: " + my_vector.get(0) + ", \n Array an Stelle 2 ausgeben: " + my_vector.get(1);
+    </pre>
+    <p id="ausgabe1.14"></p>
+
+    <script src="nr1.js"></script>
+
+    <h1>Aufgabe 3.2</h1>
+    <h2>Aufgabe 3.2.1</h2>
+    <pre class="prettyprint">
+        <!-- language: lang-js -->
+        var text;
+
+        function pubsub() {
+            subs = [];
+            return {
+                publish: function (str) {
+                    for(i=0;i<subs.length;i++) {    //subs.forEach(element => {
+                        subs[i](str);               //    element(str);
+                    }                               //});
+                },
+                subscribe: function (sub) {
+                    subs.push(sub);
+                }
+            }
+        }
+
+        function message(msg) {
+            text = msg;
+        }
+
+        my_pubsub = pubsub();
+        my_pubsub.subscribe(message); //Geändert von alert zu message
+        my_pubsub.publish("It works!"); // alert("It works!")
+
+        document.getElementById("ausgabe2.1").innerHTML = "Aufgabe 3.2.1: "+text;
+    </pre>
+    <p id="ausgabe2.1"></p>
+
+    <h2>Aufgabe 3.2.2</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         function gensymf(symb){
+            var count = 0;
+            return function () {
+                count++;
+                return symb+count; 
+            }
+        }
+        
+        gensym = gensymf('G');
+        
+        document.getElementById("ausgabe2.2").innerHTML = "Aufgabe 3.2.2: "+gensym()+", "+gensym()+", "+gensym()+", "+gensym();
+    </pre>
+    <p id="ausgabe2.2"></p>
+
+    <h2>Aufgabe 3.2.3</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         var fib = fibonaccif(0, 1);
+
+         function fibonaccif(x,y){
+             v1 = x;
+             v2 = y;
+             return function() {
+                 tmp=v1;
+                 v1=v2;
+                 v2=v2+tmp;
+                 return tmp;
+             }
+         }
+         
+         document.getElementById("ausgabe2.3").innerHTML = "Aufgabe 3.2.3: "+fib()+", "+fib()+", "+fib()+", "+fib()+", "+fib()+", "+fib();
+    </pre>
+    <p id="ausgabe2.3"></p>
+
+    <h2>Aufgabe 3.2.4</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         function addg(x) {
+            var sum = x;
+            return function(y) {
+                if(typeof y === "undefined"){
+                    return sum;
+                } else {
+                    return addg(x+y);
+                }
+            }
+        }
+        
+        document.getElementById("ausgabe2.4").innerHTML = "Aufgabe 3.2.4: " +addg(3)(4)(5)()+", "+addg(1)(2)(4)(8)();
+    </pre>
+    <p id="ausgabe2.4"></p>
+
+    <h2>Aufgabe 3.2.5</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         function add(x,y) {
+            return x+y;
+        }
+        function applyg(fun) {
+            return function calc (x) {
+                var sum = x;
+                return function(y) {
+                    if(typeof y === "undefined"){
+                        return sum;
+                    } else {
+                        return calc(fun(sum,y));
+                    }
+                }
+            }
+        }
+        
+        document.getElementById("ausgabe2.5").innerHTML = "Aufgabe 3.2.5: "+ applyg(add)(3)(4)(5)()+", "+applyg(add)(1)(2)(4)(8)();
+    </pre>
+    <p id="ausgabe2.5"></p>
+
+    <h2>Aufgabe 3.2.6</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        function m(value,source){
+            return {'value':value,'source':(typeof source==="undefined"?value:source)};
+        }
+        
+        document.getElementById("ausgabe2.6").innerHTML = "Aufgabe 3.2.6: "+JSON.stringify(m(1))+", "+JSON.stringify(m(Math.PI, "pi"));
+    </pre>
+    <p id="ausgabe2.6"></p>
+
+    <h2>Aufgabe 3.2.7</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         function m(value,source){
+            return {'value':value,'source':(typeof source==="undefined"?value:source)};
+        }
+        
+        function addm(m1,m2){
+            return {'value':m1.value+m2.value,'source':"("+m1.value+"+"+m2.value+")"};
+        }
+        
+        document.getElementById("ausgabe2.7").innerHTML = "Aufgabe 3.2.7: "+JSON.stringify(addm(m(3), m(4)));
+    </pre>
+    <p id="ausgabe2.7"></p>
+
+    <h2>Aufgabe 3.2.8</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         addm2 = binarymf(add, "+");
+
+         function binarymf(fun,operator){
+             return function(x,y){
+                 return {'value':fun(x,y),'source':"("+x+operator+y+")"};
+             }
+         }
+ 
+         document.getElementById("ausgabe2.8").innerHTML = "Aufgabe 3.2.8: "+JSON.stringify(addm2(3, 4));
+    </pre>
+    <p id="ausgabe2.8"></p>
+
+    <h2>Aufgabe 3.2.9</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        addm3 = binarymf3(add, "+");
+
+        function binarymf3(fun,operator){
+            return function(x,y){
+                if(typeof x === "number"){
+                    x = m(x);
+                }
+                if(typeof y === "number"){
+                    y = m(y);
+                }
+                return {'value':fun(x.value,y.value),'source':"("+x.value+operator+y.value+")"};
+            }
+        }
+
+        document.getElementById("ausgabe2.9").innerHTML = "Aufgabe 3.2.9: "+JSON.stringify(addm3(m(3), 4));
+    </pre>
+    <p id="ausgabe2.9"></p>
+
+    <h2>Aufgabe 3.2.10</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+         squarem = unarymf(square, "square");
+
+        function square(x){
+            return x*x;
+        }
+
+        function unarymf(fun,operator){
+            return function(x){
+                return {'value':fun(x),'source':"("+operator+" "+x+")"};
+            }
+        }
+
+        document.getElementById("ausgabe2.10").innerHTML = "Aufgabe 3.2.10: "+JSON.stringify(squarem(4));
+    </pre>
+    <p id="ausgabe2.10"></p>
+
+    <h2>Aufgabe 3.2.11</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        function hyp(a,b){
+            return Math.sqrt(square(a)+square(b));
+        }
+        
+        document.getElementById("ausgabe2.11").innerHTML = "Aufgabe 3.2.11: "+hyp(3, 4);
+    </pre>
+    <p id="ausgabe2.11"></p>
+
+    <h2>Aufgabe 3.2.12</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        function mul(x,y){
+            return x*y;
+        }
+        
+        hypa = [ Math.sqrt, [ add, [mul, 3, 3], [mul, 4, 4] ] ];
+        
+        function exp(array){
+            if(typeof array === "number"){return array;}
+            else if(array.length === 2){
+                return array[0](exp(array[1]));
+            }
+            else if(array.length === 3){
+                return array[0](exp(array[1]),exp(array[2])); //[ add, [mul, 3, 3], [mul, 4, 4] ]
+            }
+        }
+        
+        document.getElementById("ausgabe2.12").innerHTML = "Aufgabe 3.2.12: "+exp(hypa);
+    </pre>
+    <p id="ausgabe2.12"></p>
+
+    <h2>Aufgabe 3.2.13</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        var variable;
+
+        function store(x){
+           variable = x;
+        }
+         
+        store(5);
+        
+        document.getElementById("ausgabe2.13").innerHTML = "Aufgabe 3.2.13: "+(variable === 5);
+    </pre>
+    <p id="ausgabe2.13"></p>
+
+    <h2>Aufgabe 3.2.14</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        function identityf(param) {
+            return function() {
+                return param;
+            }
+        }
+        
+        function quatre(operator,x,y,task){
+            task(operator(x(),y()));
+        }
+        
+        quatre( add, identityf(3), identityf(4), store)
+        
+        document.getElementById("ausgabe2.14").innerHTML = "Aufgabe 3.2.14: "+variable;
+    </pre>
+    <p id="ausgabe2.14"></p>
+
+    <h2>Aufgabe 3.2.15</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        sqrtc = unaryc(Math.sqrt);
+        sqrtc(81, store);
+         
+        function unaryc(operator){
+            return function(x,task){
+                task(operator(x));
+            }
+        }
+         
+        document.getElementById("ausgabe2.15").innerHTML = "Aufgabe 3.2.15: "+variable; 
+    </pre>
+    <p id="ausgabe2.15"></p>
+
+    <h2>Aufgabe 3.2.16</h2>
+    <pre class="prettyprint">
+         <!-- language: lang-js -->
+        var tmp = 0;
+        addc = binaryc(add); addc(4, 5, store)
+        tmp = variable;
+        mulc = binaryc(mul); mulc(2, 3, store)
+         
+        function binaryc(operator){
+            return function(x,y,task){
+                task(operator(x,y));
+            }
+        }
+         
+        document.getElementById("ausgabe2.16").innerHTML = "Aufgabe 3.2.16: "+tmp+", "+variable;
+    </pre>
+    <p id="ausgabe2.16"></p>
+
+    <script src="nr2.js"></script>
+</body>
+</html>
