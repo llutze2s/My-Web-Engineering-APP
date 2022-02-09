@@ -4,9 +4,8 @@ import { Embed_Component } from './embed_component.js';
 
 export class Content_Component extends LitElement {
   static styles = css`
-    p,h1,h2 {
+    p,h1,h2,h3 {
       font-family: sans-serif;
-      font-size: 1em;
     }
 
     h1 {
@@ -15,6 +14,14 @@ export class Content_Component extends LitElement {
 
     h2 {
       font-size: 1.5em;
+    }
+
+    h3 {
+      font-size: 1.3em;
+    }
+
+    p {
+      font-size: 1em;
     }
 
     blockquote {
@@ -52,6 +59,7 @@ export class Content_Component extends LitElement {
         path = "Webseite/content/ResponsiveWebDesign/content.html";
         break;
       case "Java Script":
+        path = "Webseite/content/JavaScript/content.html";
         break;
       case "DOM":
         break;
