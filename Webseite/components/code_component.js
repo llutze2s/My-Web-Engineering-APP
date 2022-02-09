@@ -29,6 +29,8 @@ export class Code_Component extends LitElement {
             resize: both;
         }
         pre, code {
+            margin:0;
+            padding:0;
             white-space: pre-wrap;
             overflow-x: auto;
             text-align: left;
@@ -89,11 +91,9 @@ export class Code_Component extends LitElement {
                     <!-- Prism für den Pritty Print des Codes -->
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.min.css">
 
-                    <pre> <!-- Für Design: class language-html -->
-                        <code> <!-- Für Design: class language-html -->
-                            ${unsafeHTML(Prism.highlight(this.content, Prism.languages.html, 'html'))}
-                        </code>
-                    </pre>
+                    <pre><code> <!-- Für Design: class language-html -->
+                        ${unsafeHTML(Prism.highlight(this.content, Prism.languages.html, 'html'))}
+                    </code></pre>
                 </div>
                 </br>
                 <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Webseite Ansicht</button>
