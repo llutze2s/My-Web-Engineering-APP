@@ -16,7 +16,7 @@ function alertObserver(e){
 //https://www.chromium.org/blink/serviceworker/service-worker-faq für SSL
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function(){
-        navigator.serviceWorker.register("Webseite/components/serviceworker.js", { scope: '../../' })
+        navigator.serviceWorker.register("../../serviceworker.js")
         .then(function(registration){
             console.log("ServiceWorker registered");
         }).catch(function(err){
