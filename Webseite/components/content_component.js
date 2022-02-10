@@ -5,7 +5,7 @@ import { CodeStyle_Component } from './codestyle_component.js';
 
 export class Content_Component extends LitElement {
   static styles = css`
-    p,h1,h2,h3 {
+    p,h1,h2,h3,li {
       font-family: sans-serif;
       text-align: left;
       padding: 5px;
@@ -75,12 +75,16 @@ export class Content_Component extends LitElement {
         path = "Webseite/content/SVG/content.html";
         break;
       case "Node.js":
+        path = "Webseite/content/Nodejs/content.html";
         break;
       case "Modular":
+        path = "Webseite/content/Modular/content.html";
         break;
       case "PWA":
+        path = "Webseite/content/PWA/content.html";
         break;
       case "Vue":
+        path = "Webseite/content/Vue/content.html";
         break;
       default:
         console.log("No Topic");

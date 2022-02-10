@@ -1,0 +1,132 @@
+<h1> Übung 7 </h1>
+<h2> 7.1. File Generatoren </h2>
+<p>Schreiben Sie in Node.js zwei Kommandozeilen-Tools, um große Dateien zu erzeugen. 1. node number_file_gen.js 20_000 soll eine Datei mit 20.000 Zeilen erzeugen. 
+    In jeder Zeile soll die Zeilennummer und ein Punkt stehen. 20.000 ist dabei ein Parameter des Tools. Jede andere Zahl soll ebenfalls erlaubt sein. 2. node alpha_file_gen.js 123456 soll eine Datei mit 123456 Zeilen erzeugen. 
+    In jeder Zeile soll eine Kombination von Großbuchstaben (ohne Umlaute) in folgender Reihenfolge stehen: A B C ... Z AA AB AC AD ... usw. Implementieren Sie Ihre Kommandozeilen-Tools in modernem ECMAScript 2020. 
+</p>
+
+<p>number_file_gen.js: </p><br>
+<codestyle-component content="
+var lines = process.argv[2];
+
+//https://nodejs.org/api/fs.html#fs_fs_createwritestream_path_options
+const fs = require('fs');  //Filesystem einbinden
+var stream = fs.createWriteStream('number.txt');
+
+//https://stackoverflow.com/questions/2496710/writing-files-in-node-js
+// FileAppend und WriteFile haben nicht das erwünschte Ergebnis gebracht
+
+stream.once('open', function(fd) {
+    for(let i = 0; i< lines;i++){
+        stream.write((i+1)+'.\n');
+    }
+    stream.end();
+});
+
+console.log('Geschrieben');
+"></codestyle-component>
+
+<p>alpha_file_gen.js: </p><br>
+<codestyle-component content="
+var lines = process.argv[2];
+
+//https://nodejs.org/api/fs.html#fs_fs_createwritestream_path_options
+const fs = require('fs');  //Filesystem einbinden
+var stream = fs.createWriteStream('alpha.txt');
+
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+function getLetter(n) {  
+    var string = '';
+    while(n >= 0) {
+        string = alphabet[n % alphabet.length] + string; //String hinten anhängen da sonst falschrum
+        n = Math.floor(n / alphabet.length) - 1;
+    }
+    return string;
+}
+
+stream.once('open', function(fd) {
+    for(let i = 0; i< lines;i++){
+        stream.write(getLetter(i)+'\n');
+    }
+    stream.end();
+});
+
+console.log('Geschrieben');
+"></codestyle-component>
+
+<h2> 7.2. Performance Merge </h2>
+<p>Schreiben Sie in Node.js zwei Programme merge_files.js und merge_streams.js, um große Dateien zu zeilenweise zusammenzuführen, merge_files.js mit fs.readFile und merge_streams.js mit Streams, also createReadFileStream und pipeline.
+ 1. node merge_files.js big_file1.txt big_file2.txt 2. node merge_streams.js big_file1.txt big_file2.txt Implementieren Sie Ihre beiden Programme merge_files.js und merge_streams.js in modernem ECMAScript 2020. Messen Sie anschließend die Performanz beider Programme. 
+</p>
+
+<p>merge_files.js: </p><br>
+<codestyle-component content="
+console.time('file');
+const fs = require('fs');
+
+var file1 = fs.readFileSync(process.argv[2],'utf-8').split('\n').filter(Boolean);
+var file2 = fs.readFileSync(process.argv[3],'utf-8').split('\n').filter(Boolean);
+
+var text = '';
+
+console.log(file2);
+for(var i = 0; i<file1.length;i++){
+    text+=file1[i]+file2[i]+'\n'; 
+}
+
+fs.writeFile('merge.txt', text, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log('Geschrieben');
+    console.log(console.timeEnd('file')+' ms hat das Programm benötigt')
+});
+"></codestyle-component>
+
+<p>merge_streams.js: </p><br>
+<codestyle-component content="
+console.time('stream');
+const fs = require('fs');
+
+var streamr1 = fs.createReadStream(process.argv[2]);
+var streamr2 = fs.createReadStream(process.argv[3]);
+
+var streamw = fs.createWriteStream('merge.txt');
+
+var text1 = '';
+var text2 = '';
+
+var text = [];
+
+streamr1.on('data', function (chunk) {
+    text1 += chunk;
+});
+
+streamr2.on('data', function (chunk) {
+    text2 += chunk;
+});
+
+streamr1.on('end', () => {
+    var tmp = text1.toString().split('\n');
+    for(let i=0; i < tmp.length;i++){
+        text[i] = tmp[i];
+    }
+    var tmp = text2.toString().split('\n');
+    for(let i=0; i < tmp.length;i++){
+        text[i] += tmp[i];
+    }
+    for(let i=0; i < text.length;i++){
+        streamw.write(text[i]+'\n');
+    }
+    streamw.end();
+    console.log('Geschrieben');
+    console.timeEnd('stream');
+});
+"></codestyle-component>
+
+<p>Performanz-Messung: <br>
+<ul>
+    <li>file: 23.599ms</li>
+    <li>stream: 46.484ms</li>
+</ul></p>
