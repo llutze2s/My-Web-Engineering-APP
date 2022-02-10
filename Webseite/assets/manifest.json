@@ -29,8 +29,8 @@
         "purpose": "maskable"
     }
     ],
-    "start_url": "../../My-Web-Engineering-APP/",
-    "scope": "../../My-Web-Engineering-APP/",
+    "start_url": ".",
+    "scope": "/",
     "background_color": "#FFFFFF",
     "display": "standalone",
     "theme_color": "#290596"
