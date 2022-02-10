@@ -29,6 +29,7 @@ export class Embed_Component extends LitElement {
         .code {
             width: 95%;
             max-width: 1250px;
+            min-height: 30vh;
             max-height: 50vh;
             margin: auto;
             overflow: auto;

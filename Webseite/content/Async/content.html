@@ -1,0 +1,166 @@
+<h1> Übung 5 </h1>
+<h2> 5.1. Promises </h2>
+<p>Erstellen Sie auf Ihrem Server www2.inf.h-brs.de (oder localhost) zwei Text-Dateien A.txt und B.txt mit ungefähr gleich vielen Zeilen. Laden Sie mit der fetch-API parallel beide Text-Dateien vom Server. Geben Sie auf einer Webseite den Inhalt beider Dateien zeilenweise aus, wobei der Anfang der Zeile aus A.txt und das Ende aus B.txt stammen soll. Die beiden Dateien sollen also zeilenweise konkateniert werden. Erzielen Sie max. Geschwindigkeit durch maximale Parallelität. Achten Sie gleichzeitig auf Korrektheit. Verwenden Sie dabei ausschließlich die Promise API ohne async / await.</p>
+
+<embed-component path="Webseite/content/Async/assets/promise.html"></embed-component>
+
+<h2> 5.2. async / await </h2>
+<p>Lösen Sie die letzte Aufgabe mit async / await statt Promise.</p>
+
+<embed-component path="Webseite/content/Async/assets/async.html"></embed-component>
+
+<h2> 5.3. Web Worker </h2>
+<p>Schreiben Sie eine Webseite, die Primzahlen berechnet und fortlaufend neu berechnete Primzahlen hinzufügt. Verwenden Sie dabei die BigNum-Arithmetik. Auf der Webseite soll außerdem ein Ladebalken ständig hin- und herlaufen, damit man feststellen kann, ob die Anzeige ruckelfrei abläuft. Stellen Sie fest, ab welcher Zahl der Ladebalken anfängt zu ruckeln.
+    <br>Schreiben Sie dann einen Web Worker, der Primzahlen berechnet und diese mittels postMessage an die EventLoop in der Webseite sendet, damit diese dort angezeigt werden können.
+</p>
+
+<p>Ohne Webworker: </p><br>
+<embed-component path="Webseite/content/Async/assets/prim.html"></embed-component>
+
+<p>Java Script: </p><br>
+<codestyle-component content="
+    var i = 0;
+    var prim = 9000000; //2
+
+    // https://www.w3schools.com/howto/howto_js_progressbar.asp
+    function init(){
+        var item = document.getElementById('Bar');
+        var width = 1;
+        var countup = true;
+        setInterval(frame, 16); //60Hz
+        function frame() {
+            nextprimZahlen()
+            if (width >= 100){
+                countup = false;
+            } else if (width <=0) {
+                countup = true;
+            }
+
+            if(countup == true){
+                width++;
+                item.style.width = width + '%';
+            } else {
+                width--;
+                item.style.width = width + '%';
+            }
+        }
+    }
+
+
+    function nextprimZahlen(){
+        var display = document.getElementById('liste');
+
+        for(var x = prim+1; x < 10000000 ; x++){ //Alle Zahlen durchgehen für Prim check
+            if(primtext(x)){
+                display.innerHTML +=', '+x;
+                prim = x;
+                console.log(prim);
+                break;
+            }
+        }
+    }
+
+    function primtext(x){
+        for(let y=2; y < x; y++){ //Alle Zahlen bis dahin prüfen
+            if (x%y === 0) {
+            return false;
+            }
+        }
+        return true;
+    }
+"></codestyle-component>
+
+<p>Mit Webworker: </p><br>
+<embed-component path="Webseite/content/Async/assets/primwebworker.html"></embed-component>
+
+<p>Java Script: </p><br>
+<codestyle-component content="
+    var prim = 9000000; //Letze gefunden Prim / erste Prim
+
+    self.addEventListener('message',function(e) {
+        for(var x = prim+1; x < 10000000 ; x++){ //Alle Zahlen durchgehen für Prim check
+            if(primtext(x)){
+                self.postMessage(x);
+            }
+        }
+    });
+
+    function primtext(x){
+        for(let y=2; y < x; y++){ //Alle Zahlen bis dahin prüfen
+            if (x%y === 0) {
+            return false;
+            }
+        }
+        return true;
+    }
+"></codestyle-component>
+
+<h2> 5.4. WWW-Navigator </h2>
+<p>Schreiben Sie einen Navigator für die Fachbegriffe des WWW zu den Oberthemen HTML, CSS und JavaScript. Im Hauptmenü sollen diese 3 Oberthemen zur Auswahl stehen. Im Untermenü soll eine zugehörige Liste von Fachbegriffen zum jeweiligen ausgewählten Oberthema stehen. In der Mitte soll eine Dokumentation zum ausgewählten Fachbegriff erscheinen mit Hyperlinks zu den anderen Fachbegriffen. Wird auf einen solchen Hyperlink geklickt, so sollen sich auch die beiden Menüs anpassen. Mit dem Back-Button des Browsers soll ein Zurücksprung möglich sein.</p>
+
+<img src="Webseite/content/Async/assets/www-navigator.png" alt="WWW-Navigator Img" style="width: 60%;max-width: 500px;margin: auto;"></br>
+<embed-component path="Webseite/content/Async/assets/navigator.html"></embed-component>
+
+<p>Java Script: </p><br>
+<codestyle-component content="
+    var menuband = '';
+    var sidebar = '';
+    var additional = '';
+    var content = '';
+    var json = '';
+
+    async function init(){
+        menuband = document.getElementById('menuband');
+        sidebar = document.getElementById('sidebar');
+        additional = document.getElementById('additional');
+        content = document.getElementById('content');
+
+        json = JSON.parse(await fetch('navigator_contents.json').then(response => response.text()));
+        build();
+    }
+
+    function build(){
+        for(let i=0;i<Object.keys(json).length;i++){
+            let tmp = document.createElement('button');
+            tmp.innerText = Object.keys(json)[i];
+            tmp.addEventListener('click', function(){
+                onpresssidebar(tmp);
+                tmp.style.background = 'grey';
+                content.innerText = '';
+                additional.innerHTML = '';
+            });
+            menuband.appendChild(tmp);
+        }
+    }
+
+    function onpresssidebar( button ){
+        sidebar.innerText = '';
+        for(let i=0;i<Object.keys(json[button.innerText]).length; i++){
+            let tmp = document.createElement('button');
+            tmp.innerText = Object.keys(json[button.innerText])[i];
+            tmp.addEventListener('click', function(){
+                onpresscontent(button,tmp);
+                setcolor();
+                button.style.background = 'grey';
+            });
+            sidebar.appendChild(tmp);
+        }
+    }
+
+    function onpresscontent( topic , subtopic ){
+        content.innerText = json[topic.innerText][subtopic.innerText].content;
+        setcolor();
+        topic.style.background = 'grey';
+        subtopic.style.background = 'grey';
+        for(let i=0; i < json[topic.innerText][subtopic.innerText].references.length; i++){
+            additional.innerHTML='<a href='+json[topic.innerText][subtopic.innerText].references[i]+'>'+json[topic.innerText][subtopic.innerText].references[i]+'</a><br>'
+        }
+    }
+
+    function setcolor(){
+        let buttons = document.getElementsByTagName('button');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.background = '#6A709F';
+        }
+    }
+"></codestyle-component>

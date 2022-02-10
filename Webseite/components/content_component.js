@@ -69,6 +69,7 @@ export class Content_Component extends LitElement {
         path = "Webseite/content/DOM/content.html";
         break;
       case "Async":
+        path = "Webseite/content/Async/content.html";
         break;
       case "SVG":
         break;
