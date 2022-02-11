@@ -6,6 +6,9 @@ Webseite:  https://llutze2s.github.io/My-Web-Engineering-APP/
 
 Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/   (npx chromatic --project-token=45fe4424b8dc)
 
+## Line of Code count:
+![Line Of Code](LOC_from_codetabs_com.PNG)
+
 ## Inhaltsverzeichnis für die Übungen
 1. [Einführung](./Übungen/Übung1.md)
 2. [Responsive Web Design](./Übungen/Übung2.md)
