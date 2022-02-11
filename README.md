@@ -7,6 +7,7 @@ Webseite:  https://llutze2s.github.io/My-Web-Engineering-APP/
 Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/   (npx chromatic --project-token=45fe4424b8dc)
 
 ## Line of Code count:
+<i>Quelle: https://codetabs.com/count-loc/count-loc-online.html</i>
 ![Line Of Code](LOC_from_codetabs_com.PNG)
 
 ## Inhaltsverzeichnis für die Übungen
