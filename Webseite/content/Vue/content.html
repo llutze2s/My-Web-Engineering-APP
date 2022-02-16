@@ -1,0 +1,132 @@
+<h1> Übung 10 </h1>
+<h2> 10.1: Komponente in Vue.js </h2>
+<p>
+    Schreiben Sie eine Vue.js Single File Component mit einem Text-Eingabefeld und 3 Ausgabefeldern, in denen man während des Tippens sehen kann, <br>
+    1. wie viele Buchstaben <br>
+    2. wie viele Leerzeichen <br>
+    3. wie viele Worte <br>
+    man in das Text-Eingabefeld bereits eingegeben hat. <br><br>
+    Betten Sie Ihre Komponente in eine Webseite zweimal ein und testen Sie, ob beide Komponenten unabhängig voneinander sind.
+</p>
+
+<p>Vue.js Single File Component: </p><br>
+<codestyle-component content='
+    import textEingabe from "./textEingabe.mjs";
+
+    export default {
+        template: `
+            <div>
+                <input @input="analysis" ref="input">
+                <p>a) Buchstaben: {{buchstaben}}</p>
+                <p>b) Leerzeichen: {{leerzeichen}}</p>
+                <p>c) Wörter: {{woerter}}</p>
+            </div>
+        `,
+
+        data () {
+            return {
+                buchstaben: 0,
+                leerzeichen: 0,
+                woerter: 0
+            }
+        },
+
+        methods:{
+            analysis() {
+                let input = this.$refs.input.value;
+                this.buchstaben = input.length;
+                input = input.split(/\s/);
+                this.leerzeichen = input.length-1;
+                this.buchstaben = this.buchstaben - this.leerzeichen;
+                this.woerter = input.length;
+            }
+        }
+    }
+
+    new Vue({
+        el: "#app",
+        components: {
+            textEingabe
+        }
+    });
+'></codestyle-component>
+
+<p>Vue.js Single File Component: </p><br>
+<codestyle-component content='
+    <!DOCTYPE html>
+    <html lang="de">
+    <head>
+        <title>Text Analyse</title>
+        <script src="https://unpkg.com/vue"></script>   <!-- VUE einbinden -->
+        <script type="module" src="textEingabe.mjs"></script> <!-- Modul -->
+    </head>
+    <body>
+        <h1>Text Analyse</h1>
+        <p>Bitte den zu analysierenden Text eingeben</p>
+        <div id="app">
+            <text-eingabe></text-eingabe>
+            <hr>
+            <text-eingabe></text-eingabe>
+        </div>
+    </body>
+    </html>
+'></codestyle-component>
+
+<h2> 10.2: Menü-Komponente </h2>
+<p>Schreiben Sie eine möglichst flexible Vue.js Single File Component für Menüs und wenden Sie diese in derselben Webseite zweimal an, einmal horizontal, das andere Mal vertikal.
+</p>
+
+<p>menuKomponente.mjs: </p><br>
+<codestyle-component content="
+    import MenuKomponente from './menuKomponente.mjs';
+
+    export default {
+        template: `
+            <div style='border: 1px solid black;'>
+            <headline :style=direction v-for='topic in this.content' :key='topic' :name='topic'></headline>
+            </div>
+        `,
+
+        props: ['topics','vetrical'],
+        computed: {
+            content: function () {
+                return this.topics.split(',');
+            },
+            direction:function () {
+                return this.vetrical ? {'display': 'block'}:'';
+            }
+        }
+    }
+
+    Vue.component('headline', {
+        template: '<button>{{name}}</button>',
+        props: ['name']
+    });
+
+    new Vue({
+        el: '#app',
+        components: {
+            MenuKomponente
+        }
+    });
+"></codestyle-component>
+
+<p>menuKomponente.html: </p><br>
+<codestyle-component content='
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Menü</title>
+    <script src="https://unpkg.com/vue"></script>   <!-- VUE einbinden -->
+    <script type="module" src="menuKomponente.mjs"></script> <!-- Modul -->
+</head>
+<body>
+    <h1>Menü Komponente</h1>
+    <div id="app">
+        <menu-komponente topics="CSS,HTML,Java,SQL"></menu-komponente>
+        <hr>
+        <menu-komponente topics="CSS,HTML,Java,SQL" vetrical="true"></menu-komponente>
+    </div>
+</body>
+</html>
+'></codestyle-component>

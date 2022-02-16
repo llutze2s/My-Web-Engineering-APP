@@ -6,58 +6,58 @@
 
 <p>Manifest für die PWA: </p><br>
 <codestyle-component content='
-{
-    "short_name": "WWW Nav",
-    "name": "WWW Navigator",
-    "icons": [
     {
-    "src": "icons/icon-72.png",
-    "type": "image/png",
-    "sizes": "72x72"
-    },
-    {
-    "src": "icons/icon-144.png",
-    "type": "image/png",
-    "sizes": "144x144"
-    },
-    {
-    "src": "icons/icon-192.png",
-    "type": "image/png",
-    "sizes": "192x192"
-    },
-    {
-    "src": "icons/icon-512.png",
-    "type": "image/png",
-    "sizes": "512x512",
-    "purpose": "maskable"
+        "short_name": "WWW Nav",
+        "name": "WWW Navigator",
+        "icons": [
+        {
+        "src": "icons/icon-72.png",
+        "type": "image/png",
+        "sizes": "72x72"
+        },
+        {
+        "src": "icons/icon-144.png",
+        "type": "image/png",
+        "sizes": "144x144"
+        },
+        {
+        "src": "icons/icon-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+        },
+        {
+        "src": "icons/icon-512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "maskable"
+        }
+        ],
+        "start_url": "/Übungen/Assets/9.PWA/navigator.html",
+        "scope": "/Übungen/Assets/9.PWA/",
+        "background_color": "#448AFF",
+        "display": "standalone",
+        "theme_color": "#448AFF"
     }
-    ],
-    "start_url": "/Übungen/Assets/9.PWA/navigator.html",
-    "scope": "/Übungen/Assets/9.PWA/",
-    "background_color": "#448AFF",
-    "display": "standalone",
-    "theme_color": "#448AFF"
-}
 '></codestyle-component>
 
 
 <p>Navigator.js ergänzt um Code für die PWA: </p><br>
 <codestyle-component content='
-//https://developers.google.com/web/tools/workbox/guides/get-started
-//https://www.chromium.org/blink/serviceworker/service-worker-faq für SSL
-if("serviceWorker" in navigator){
-    window.addEventListener("load", function(){
-        navigator.serviceWorker.register("./serviceworker.js")
-        .then(function(registration){
-            console.log("ServiceWorker registered");
-        }).catch(function(err){
-            console.log("ServiceWorker failed");
-            console.log(err);
+    //https://developers.google.com/web/tools/workbox/guides/get-started
+    //https://www.chromium.org/blink/serviceworker/service-worker-faq für SSL
+    if("serviceWorker" in navigator){
+        window.addEventListener("load", function(){
+            navigator.serviceWorker.register("./serviceworker.js")
+            .then(function(registration){
+                console.log("ServiceWorker registered");
+            }).catch(function(err){
+                console.log("ServiceWorker failed");
+                console.log(err);
+            })
         })
-    })
-} else {
-    console.log("ServiceWorker not supported");
-}
+    } else {
+        console.log("ServiceWorker not supported");
+    }
 '></codestyle-component>
 
 <p>Serviceworker für die PWA: </p><br>
