@@ -7,6 +7,10 @@ Webseite:  https://llutze2s.github.io/My-Web-Engineering-APP/
 Storybook: https://main--61a393ea09f3dc003ad67531.chromatic.com/   (npx chromatic --project-token=45fe4424b8dc)
 
 ## Line of Code count:
+Mit lineofcodes.py script:
+<i>6930 Zeilen in 69 Dateien</i>
+
+Mit Codelabs:
 <i>Quelle: https://codetabs.com/count-loc/count-loc-online.html</i>
 ![Line Of Code](LOC_from_codetabs_com.PNG)
 
