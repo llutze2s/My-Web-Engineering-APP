@@ -1,0 +1,93 @@
+<h1> Übung 9 </h1>
+<h2> 9.1. PWA  </h2>
+<p>
+    Wandeln Sie Ihren LitElement WWW-Navigator aus Aufgabe 8.3 in eine Progressive Web App um.
+</p>
+
+<p>Manifest für die PWA: </p><br>
+<codestyle-component content='
+{
+    "short_name": "WWW Nav",
+    "name": "WWW Navigator",
+    "icons": [
+    {
+    "src": "icons/icon-72.png",
+    "type": "image/png",
+    "sizes": "72x72"
+    },
+    {
+    "src": "icons/icon-144.png",
+    "type": "image/png",
+    "sizes": "144x144"
+    },
+    {
+    "src": "icons/icon-192.png",
+    "type": "image/png",
+    "sizes": "192x192"
+    },
+    {
+    "src": "icons/icon-512.png",
+    "type": "image/png",
+    "sizes": "512x512",
+    "purpose": "maskable"
+    }
+    ],
+    "start_url": "/Übungen/Assets/9.PWA/navigator.html",
+    "scope": "/Übungen/Assets/9.PWA/",
+    "background_color": "#448AFF",
+    "display": "standalone",
+    "theme_color": "#448AFF"
+}
+'></codestyle-component>
+
+
+<p>Navigator.js ergänzt um Code für die PWA: </p><br>
+<codestyle-component content='
+//https://developers.google.com/web/tools/workbox/guides/get-started
+//https://www.chromium.org/blink/serviceworker/service-worker-faq für SSL
+if("serviceWorker" in navigator){
+    window.addEventListener("load", function(){
+        navigator.serviceWorker.register("./serviceworker.js")
+        .then(function(registration){
+            console.log("ServiceWorker registered");
+        }).catch(function(err){
+            console.log("ServiceWorker failed");
+            console.log(err);
+        })
+    })
+} else {
+    console.log("ServiceWorker not supported");
+}
+'></codestyle-component>
+
+<p>Serviceworker für die PWA: </p><br>
+<codestyle-component content="
+    const cacheName = 'local-cache';
+
+    self.addEventListener('install', e => {
+    e.waitUntil(
+        caches.open(cacheName).then( cache => {
+        return cache.addAll(['./navigator.html','./modul_menu_nav.js','./navigator_contents.json','./navigator.js']);
+        })
+    )
+    });
+
+    self.addEventListener('fetch', e => {
+    e.respondWith(
+        fetch(e.request).catch(_=>{
+            return caches.open(cacheName).then( cache => {
+            return cache.match( e.request )
+        }).catch( err => {
+            return new Response('You are offline now.')
+            })
+        })
+    )
+    });
+"></codestyle-component>
+
+<p>Lighthouse Report des WWW-Navigators:</p>
+<img src="Webseite/content/PWA/assets/lighthousereport.png" alt="Lighthouse Report Img" style="width: 80%;margin: auto;"></br>
+
+<p>Lighthouse Report des Lösungs-Navigators:</p>
+<img src="Webseite/content/PWA/assets/lighthousereporthausarbeit.png" alt="Lighthouse Report der Hausarbeit Img" style="width: 80%;margin: auto;"></br>
+
