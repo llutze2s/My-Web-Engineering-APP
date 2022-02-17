@@ -1,6 +1,6 @@
 import {LitElement, html, css, unsafeHTML} from 'https://mkaul.github.io/lit/lib/lit.js';
 
-// Prism für den Pritty Print des Codes
+// Prism für den Pretty Print des Codes
 import 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js';
 
 export class CodeStyle_Component extends LitElement {
