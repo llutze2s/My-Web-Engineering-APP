@@ -82,7 +82,7 @@ export class Code_Component extends LitElement {
                 <div class="webseite" id=${this.path}>
                     ${unsafeHTML(this.content)}
                 </div>
-                </br>
+                <br>
                 <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Code Ansicht</button>
             `;
         } else {
@@ -95,7 +95,7 @@ export class Code_Component extends LitElement {
                         ${unsafeHTML(Prism.highlight(this.content, Prism.languages.html, 'html'))}
                     </code></pre>
                 </div>
-                </br>
+                <br>
                 <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Webseite Ansicht</button>
             `;
         }

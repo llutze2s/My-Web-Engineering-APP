@@ -90,7 +90,7 @@ export class Embed_Component extends LitElement {
                 <div class="embed" id=${this.path}>
                     <embed src=${this.path} type="text/html"></embed>
                 </div>
-                </br>
+                <br>
                 ${this.noButton
                     ? html``
                     : html`<button type="button" id=${this.path} @click=${(e) => this._press(e)}>Code Ansicht</button>`
@@ -108,7 +108,7 @@ export class Embed_Component extends LitElement {
                         </code>
                     </pre>
                 </div>
-                </br>
+                <br>
                 <button type="button" id=${this.path} @click=${(e) => this._press(e)}>Webseite Ansicht</button>
             `;
         }
